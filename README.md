@@ -129,10 +129,9 @@ We prepare leaders to address complex social issues, uphold democratic values, a
 ## For Prospective Students
 
 Interested in our MPA program? Learn more:
-- [Program Website]
-- [Admissions Information]
-- [Connect with Current Students]
-- [Alumni Profiles]
+- [Program Website](https://paj.fullerton.edu/publicadministration/master/)
+- [Admissions Information](https://paj.fullerton.edu/publicadministration/master/mpaadmissions.html)
+- [Alumni Profiles](https://paj.fullerton.edu/publicadministration/master/mpaalumni.html)
 
 ---
 
