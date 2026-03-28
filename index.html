@@ -543,26 +543,6 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">Program Track:</legend>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="program_track" value="on_campus" required>
-                                    On-campus
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="program_track" value="online">
-                                    Online
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="program_track" value="hybrid">
-                                    Hybrid
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-
-                    <div class="question">
-                        <fieldset>
                             <legend class="question-label required">Time to Complete Program:</legend>
                             <div class="radio-group">
                                 <label class="radio-option">
@@ -582,8 +562,16 @@
                                     3.5 years
                                 </label>
                                 <label class="radio-option">
-                                    <input type="radio" name="time_to_complete" value="4+_years">
-                                    4+ years
+                                    <input type="radio" name="time_to_complete" value="4_years">
+                                    4 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="4.5_years">
+                                    4.5 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="5+_years">
+                                    5+ years
                                 </label>
                             </div>
                         </fieldset>
@@ -1696,8 +1684,9 @@
                     // Clear saved progress
                     localStorage.removeItem('mpa_survey_data');
 
-                    // Success - hide form, show completion message
+                    // Success - hide form, intro, and progress bar; show completion message
                     document.getElementById('surveyForm').style.display = 'none';
+                    document.querySelector('.intro-text').style.display = 'none';
                     document.querySelector('.progress-container').style.display = 'none';
                     var completionMsg = document.getElementById('completionMessage');
                     completionMsg.classList.add('active');

@@ -79,6 +79,42 @@ Our Diversity, Equity, Inclusion, and Belonging assessment focuses on:
 
 ---
 
+## Accessibility
+
+This survey is designed to meet WCAG 2.1 Level AA conformance. Key accessibility features include:
+
+### Assistive Technology Support
+- All form fields have programmatic label associations (`for`/`id` and `fieldset`/`legend`)
+- Rating table radio buttons include `aria-label` attributes with full row and column context
+- Error messages use `role="alert"` with `aria-live="assertive"` for screen reader announcements
+- Progress bar includes `role="progressbar"` with accurate `aria-valuenow` and `aria-label`
+- The resume dialog implements the WAI-ARIA dialog pattern with focus trapping
+
+### Keyboard Navigation
+- All interactive elements are reachable via keyboard
+- `:focus-visible` outlines on all focusable elements
+- Focus is programmatically moved to section headings on navigation
+- Skip navigation link provided to bypass header content
+
+### Visual Accessibility
+- Color is never the sole indicator of meaning (invalid fields use thicker borders in addition to color)
+- Required field indicators use both asterisk character and color
+- `prefers-reduced-motion` media query disables all animations and transitions
+- Sufficient color contrast ratios on all text elements
+
+### Mobile Accessibility
+- Rating tables convert to stacked card layouts on small screens
+- Touch targets meet minimum 24x24px size requirements
+- Minimum 14px font size on mobile (no 12px text)
+
+### Semantic HTML
+- Proper landmark regions: `<header>`, `<main>`, `<nav>`
+- Correct heading hierarchy (`<h1>` > `<h2>`)
+- `<fieldset>`/`<legend>` grouping on all radio and checkbox questions
+- Table headers use `scope="col"` and `scope="row"` for proper cell association
+
+---
+
 ## For Program Faculty & Staff
 
 ### Technical Details
