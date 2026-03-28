@@ -532,12 +532,11 @@
                         <div class="question">
                             <label class="question-label" for="cwid">Campus-Wide ID (CWID):</label>
                             <input type="text" name="cwid" id="cwid" maxlength="9" inputmode="numeric">
-                            <div class="helper-text">Optional &mdash; used only to match responses with program records</div>
                         </div>
 
                         <div class="question">
                             <label class="question-label required" for="graduation_date">Graduation Date (Month/Year):</label>
-                            <input type="text" name="graduation_date" id="graduation_date" placeholder="e.g., May 2025" required>
+                            <input type="text" name="graduation_date" id="graduation_date" placeholder="e.g., May 2026" required>
                         </div>
                     </div>
 
@@ -605,30 +604,6 @@
                                 <label class="radio-option">
                                     <input type="radio" name="gpa_range" value="below_3.00">
                                     Below 3.00
-                                </label>
-                            </div>
-                        </fieldset>
-                    </div>
-
-                    <div class="question">
-                        <fieldset>
-                            <legend class="question-label required">Culminating Experience Type:</legend>
-                            <div class="radio-group">
-                                <label class="radio-option">
-                                    <input type="radio" name="culminating_type" value="thesis" required>
-                                    Thesis
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="culminating_type" value="applied_project">
-                                    Applied Project
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="culminating_type" value="comprehensive_exam">
-                                    Comprehensive Exam
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="culminating_type" value="internship_portfolio">
-                                    Internship + Portfolio
                                 </label>
                             </div>
                         </fieldset>
@@ -774,6 +749,66 @@
                                         <td data-label="Adequately"><input type="radio" name="comp_communicate" value="3" aria-label="Communicate and interact productively with a diverse workforce: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="comp_communicate" value="2" aria-label="Communicate and interact productively with a diverse workforce: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="comp_communicate" value="1" aria-label="Communicate and interact productively with a diverse workforce: Very Poorly"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">Rate how well the program prepared you in each program-specific competency area:</legend>
+                            <table class="rating-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Program-Specific Competency</th>
+                                        <th scope="col">Very Well</th>
+                                        <th scope="col">Well</th>
+                                        <th scope="col">Adequately</th>
+                                        <th scope="col">Poorly</th>
+                                        <th scope="col">Very Poorly</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Budget and financial management</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_budget_finance" value="5" aria-label="Budget and financial management: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_budget_finance" value="4" aria-label="Budget and financial management: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_budget_finance" value="3" aria-label="Budget and financial management: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_budget_finance" value="2" aria-label="Budget and financial management: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_budget_finance" value="1" aria-label="Budget and financial management: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Human resource management</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_hr" value="5" aria-label="Human resource management: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_hr" value="4" aria-label="Human resource management: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_hr" value="3" aria-label="Human resource management: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_hr" value="2" aria-label="Human resource management: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_hr" value="1" aria-label="Human resource management: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Research and data analysis</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_research" value="5" aria-label="Research and data analysis: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_research" value="4" aria-label="Research and data analysis: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_research" value="3" aria-label="Research and data analysis: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_research" value="2" aria-label="Research and data analysis: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_research" value="1" aria-label="Research and data analysis: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Ethics and accountability</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_ethics" value="5" aria-label="Ethics and accountability: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_ethics" value="4" aria-label="Ethics and accountability: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_ethics" value="3" aria-label="Ethics and accountability: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_ethics" value="2" aria-label="Ethics and accountability: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_ethics" value="1" aria-label="Ethics and accountability: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Intergovernmental relations</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_intergovernmental" value="5" aria-label="Intergovernmental relations: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_intergovernmental" value="4" aria-label="Intergovernmental relations: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_intergovernmental" value="3" aria-label="Intergovernmental relations: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_intergovernmental" value="2" aria-label="Intergovernmental relations: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_intergovernmental" value="1" aria-label="Intergovernmental relations: Very Poorly"></td>
                                     </tr>
                                 </tbody>
                             </table>
