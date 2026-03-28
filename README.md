@@ -170,5 +170,7 @@ This survey tool is maintained by the CSUF MPA Program. For questions about usin
 ---
 
 **Last Updated**: March 2026
-**Survey Version**: 2.0
-**NASPAA Accredited**: [Yes/Pending - update as appropriate]
+
+**Survey Version**: 2.2.1
+
+**NASPAA Accredited**: Through 2030
