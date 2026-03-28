@@ -17,17 +17,16 @@ This exit survey is designed to gather feedback from graduating MPA students to 
 - Identify areas for program enhancement
 
 ### Time Requirement
-**15-20 minutes** to complete all sections
+**About 10 minutes** to complete all sections
 
 ---
 
 ## For Students: How to Complete the Survey
 
 ### When to Complete
-- During your **final semester** when you have:
-  - All final grades
+- During the **last week of your final semester** when you have:
   - Culminating experience feedback/grade
-  - Final GPA
+  - Your most recent GPA estimate (final grades are not required)
   - Post-graduation plans confirmed
 
 ### Access the Survey
@@ -36,24 +35,24 @@ This exit survey is designed to gather feedback from graduating MPA students to 
 > *Note: Replace the URL above with your actual GitHub Pages link after deployment*
 
 ### What to Expect
-The survey includes **8 sections**:
+The survey includes **7 sections**:
 1. **Background Information** - Your program details
-2. **Academic Performance** - GPA, culminating experience, satisfaction ratings
+2. **Academic Performance** - GPA range, culminating experience, satisfaction ratings
 3. **Curriculum and Learning** - NASPAA competencies, valuable courses
-4. **Career and Employment** - Current status, job search, MPA utilization
+4. **Career and Employment** - Status during and after program, job details
 5. **Program Improvement** - Suggestions for enhancement
 6. **Diversity, Equity, Inclusion, and Belonging** - DEI+B experiences
-7. **Alumni Engagement** - Future involvement opportunities
-8. **Additional Comments** - Open feedback
+7. **Alumni Engagement and Final Comments** - Future involvement and open feedback
 
 ### Features
-- ✅ **Progress bar** - See how far you've progressed
-- ✅ **Auto-save sections** - Your responses save as you go
-- ✅ **Mobile-friendly** - Complete on any device
-- ✅ **Automatic submission** - Responses sent securely when you submit
+- **Progress bar** - See how far you've progressed
+- **Save and resume** - Your progress is saved automatically; come back anytime within 7 days
+- **Mobile-friendly** - Complete on any device with responsive rating tables
+- **Automatic submission** - Responses sent securely when you submit
+- **Accessible** - WCAG 2.1 AA compliant with full keyboard and screen reader support
 
 ### Privacy
-- Your responses are confidential and used for program improvement
+- Name and email are not collected; an optional CWID can be provided for record matching
 - Data is aggregated for reporting to NASPAA and program assessment
 - Individual responses are reviewed only by program leadership
 
@@ -96,7 +95,7 @@ Our Diversity, Equity, Inclusion, and Belonging assessment focuses on:
 
 ### Customization
 To modify the survey:
-1. Edit `mpa_exit_survey.html`
+1. Edit `index.html`
 2. Update questions, sections, or styling as needed
 3. Commit changes to repository
 4. Changes automatically deploy to GitHub Pages
@@ -170,6 +169,6 @@ This survey tool is maintained by the CSUF MPA Program. For questions about usin
 
 ---
 
-**Last Updated**: October 2025  
-**Survey Version**: 1.0  
+**Last Updated**: March 2026
+**Survey Version**: 2.0
 **NASPAA Accredited**: [Yes/Pending - update as appropriate]

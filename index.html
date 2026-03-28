@@ -85,6 +85,10 @@
             border-bottom: 2px solid #f0f0f0;
         }
 
+        .section-title:focus:not(:focus-visible) {
+            outline: none;
+        }
+
         .question {
             margin-bottom: 25px;
         }
@@ -99,6 +103,19 @@
         .required::after {
             content: " *";
             color: #d32f2f;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend.question-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
         }
 
         input[type="text"],
@@ -122,8 +139,14 @@
         input[type="number"]:focus,
         select:focus,
         textarea:focus {
-            outline: none;
             border-color: #003262;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 50, 98, 0.25);
+        }
+
+        :focus-visible {
+            outline: 2px solid #003262;
+            outline-offset: 2px;
         }
 
         textarea {
@@ -180,9 +203,14 @@
             color: #333;
         }
 
+        .rating-table th[scope="row"],
         .rating-table td:first-child {
             text-align: left;
             font-weight: 500;
+        }
+
+        .rating-table tbody tr:nth-child(odd) {
+            background: #fafafa;
         }
 
         .rating-table input[type="radio"] {
@@ -236,8 +264,10 @@
         }
 
         button:disabled {
-            opacity: 0.5;
+            background: #7a8a9a;
+            color: #fff;
             cursor: not-allowed;
+            transform: none;
         }
 
         .completion-message {
@@ -275,18 +305,151 @@
             display: block;
         }
 
+        .skip-section-link {
+            display: block;
+            text-align: right;
+            color: #767676;
+            font-size: 13px;
+            text-decoration: underline;
+            margin-bottom: 15px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+
+        .skip-section-link:hover {
+            color: #666;
+        }
+
+        .resume-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .resume-dialog {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .resume-dialog h3 {
+            color: #003262;
+            margin-bottom: 10px;
+        }
+
+        .resume-dialog p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .resume-dialog .button-group {
+            justify-content: center;
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .helper-text {
+            color: #666;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #003262;
+            color: white;
+            padding: 8px 16px;
+            z-index: 100;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .optional-tag {
+            color: #767676;
+            font-weight: 400;
+            font-size: 13px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
             }
 
-            .rating-table {
-                font-size: 12px;
+            .rating-table thead {
+                display: none;
             }
 
-            .rating-table th,
-            .rating-table td {
-                padding: 8px 4px;
+            .rating-table,
+            .rating-table tbody,
+            .rating-table tr,
+            .rating-table td,
+            .rating-table th[scope="row"] {
+                display: block;
+                width: 100%;
+            }
+
+            .rating-table tr {
+                border: 1px solid #e0e0e0;
+                border-radius: 6px;
+                padding: 12px;
+                margin-bottom: 12px;
+                background: white !important;
+            }
+
+            .rating-table th[scope="row"],
+            .rating-table td:first-child {
+                font-weight: 600;
+                font-size: 15px;
+                margin-bottom: 10px;
+                border: none;
+                padding: 0;
+                text-align: left;
+            }
+
+            .rating-table td:not(:first-child) {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                border: none;
+                padding: 6px 10px;
+                min-height: 36px;
+            }
+
+            .rating-table td:not(:first-child)::before {
+                content: attr(data-label);
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+            .rating-table input[type="radio"] {
+                min-width: 24px;
+                min-height: 24px;
+            }
+
+            .rating-table {
+                font-size: 14px;
             }
 
             .button-group {
@@ -295,6 +458,10 @@
 
             button {
                 width: 100%;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -317,762 +484,902 @@
             gap: 20px;
         }
 
-        @media (max-width: 768px) {
-            .two-column {
-                grid-template-columns: 1fr;
+        @media (prefers-reduced-motion: reduce) {
+            .section.active {
+                animation: none;
+            }
+            .progress-bar {
+                transition: none;
+            }
+            .btn-primary:hover {
+                transform: none;
+            }
+            input, select, textarea {
+                transition: none;
             }
         }
     </style>
 </head>
 <body>
+    <a href="#surveyForm" class="skip-link">Skip to survey</a>
     <div class="container">
-        <div class="header">
+        <header class="header">
             <h1>MPA Program Exit Survey</h1>
             <p>California State University, Fullerton</p>
-        </div>
+        </header>
 
-        <div class="intro-text">
-            <p><strong>Before submitting this survey:</strong> Please make sure you have all your final grades/feedback, your culminating experience feedback or grade, and your overall GPA before you begin.</p>
-            <p>This process might take 15-20 minutes. Thanks for your patience as we work to improve the program for future students.</p>
-            <p><span style="color: #d32f2f;">*</span> indicates required field</p>
-        </div>
-
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div class="error-message" id="errorMessage"></div>
-
-        <form id="surveyForm" action="https://formspree.io/f/mblzqjjl" method="POST">
-            <!-- Section 1: Background Information -->
-            <div class="section active" data-section="1">
-                <h2 class="section-title">1. Background Information</h2>
-                
-                <div class="two-column">
-                    <div class="question">
-                        <label class="question-label required">Name:</label>
-                        <input type="text" name="name" required>
-                    </div>
-                    
-                    <div class="question">
-                        <label class="question-label required">Email:</label>
-                        <input type="email" name="email" required>
-                    </div>
-                </div>
-
-                <div class="two-column">
-                    <div class="question">
-                        <label class="question-label">Phone:</label>
-                        <input type="tel" name="phone">
-                    </div>
-                    
-                    <div class="question">
-                        <label class="question-label required">Graduation Date (Month/Year):</label>
-                        <input type="text" name="graduation_date" placeholder="e.g., May 2025" required>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Program Track:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="program_track" value="on_campus" required>
-                            On-campus
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="program_track" value="online" required>
-                            Online
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="program_track" value="hybrid" required>
-                            Hybrid
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Employment Status During Program:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="employment_status" value="full_time" required>
-                            Full-time employed
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="employment_status" value="part_time" required>
-                            Part-time employed
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="employment_status" value="unemployed" required>
-                            Unemployed/Student only
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="employment_status" value="other" required>
-                            Other
-                        </label>
-                    </div>
-                    <input type="text" name="employment_status_other" placeholder="Please specify" style="margin-top: 10px; display: none;">
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Time to Complete Program:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="time_to_complete" value="2_years" required>
-                            2 years
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="time_to_complete" value="2.5_years" required>
-                            2.5 years
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="time_to_complete" value="3_years" required>
-                            3 years
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="time_to_complete" value="3.5_years" required>
-                            3.5 years
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="time_to_complete" value="4+_years" required>
-                            4+ years
-                        </label>
-                    </div>
-                </div>
+        <main>
+            <div class="intro-text">
+                <p><strong>Before submitting this survey:</strong> Please have your culminating experience feedback or grade and your most recent GPA estimate before you begin. Final grades are not required.</p>
+                <p>This survey takes about 10 minutes. Thanks for your patience as we work to improve the program for future students.</p>
+                <p>Fields marked with an asterisk (<span style="color: #d32f2f;">*</span>) are required</p>
             </div>
 
-            <!-- Section 2: Academic Performance -->
-            <div class="section" data-section="2">
-                <h2 class="section-title">2. Academic Performance and Experience</h2>
-                
-                <div class="question">
-                    <label class="question-label required">Final Overall GPA:</label>
-                    <input type="number" name="gpa" step="0.01" min="0" max="4.0" required>
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Culminating Experience Type:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="culminating_type" value="thesis" required>
-                            Thesis
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="culminating_type" value="applied_project" required>
-                            Applied Project
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="culminating_type" value="comprehensive_exam" required>
-                            Comprehensive Exam
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="culminating_type" value="internship_portfolio" required>
-                            Internship + Portfolio
-                        </label>
-                    </div>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">Culminating Experience Grade/Feedback:</label>
-                    <textarea name="culminating_feedback" rows="3"></textarea>
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Rate your overall satisfaction with:</label>
-                    <table class="rating-table">
-                        <thead>
-                            <tr>
-                                <th>Aspect</th>
-                                <th>Excellent</th>
-                                <th>Good</th>
-                                <th>Fair</th>
-                                <th>Poor</th>
-                                <th>N/A</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Course content quality</td>
-                                <td><input type="radio" name="rating_course_content" value="5" required></td>
-                                <td><input type="radio" name="rating_course_content" value="4"></td>
-                                <td><input type="radio" name="rating_course_content" value="3"></td>
-                                <td><input type="radio" name="rating_course_content" value="2"></td>
-                                <td><input type="radio" name="rating_course_content" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Faculty teaching effectiveness</td>
-                                <td><input type="radio" name="rating_faculty_teaching" value="5" required></td>
-                                <td><input type="radio" name="rating_faculty_teaching" value="4"></td>
-                                <td><input type="radio" name="rating_faculty_teaching" value="3"></td>
-                                <td><input type="radio" name="rating_faculty_teaching" value="2"></td>
-                                <td><input type="radio" name="rating_faculty_teaching" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Faculty accessibility/support</td>
-                                <td><input type="radio" name="rating_faculty_access" value="5" required></td>
-                                <td><input type="radio" name="rating_faculty_access" value="4"></td>
-                                <td><input type="radio" name="rating_faculty_access" value="3"></td>
-                                <td><input type="radio" name="rating_faculty_access" value="2"></td>
-                                <td><input type="radio" name="rating_faculty_access" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Academic advising quality</td>
-                                <td><input type="radio" name="rating_advising" value="5" required></td>
-                                <td><input type="radio" name="rating_advising" value="4"></td>
-                                <td><input type="radio" name="rating_advising" value="3"></td>
-                                <td><input type="radio" name="rating_advising" value="2"></td>
-                                <td><input type="radio" name="rating_advising" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Program administration</td>
-                                <td><input type="radio" name="rating_administration" value="5" required></td>
-                                <td><input type="radio" name="rating_administration" value="4"></td>
-                                <td><input type="radio" name="rating_administration" value="3"></td>
-                                <td><input type="radio" name="rating_administration" value="2"></td>
-                                <td><input type="radio" name="rating_administration" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Career services/job placement support</td>
-                                <td><input type="radio" name="rating_career_services" value="5" required></td>
-                                <td><input type="radio" name="rating_career_services" value="4"></td>
-                                <td><input type="radio" name="rating_career_services" value="3"></td>
-                                <td><input type="radio" name="rating_career_services" value="2"></td>
-                                <td><input type="radio" name="rating_career_services" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Student services</td>
-                                <td><input type="radio" name="rating_student_services" value="5" required></td>
-                                <td><input type="radio" name="rating_student_services" value="4"></td>
-                                <td><input type="radio" name="rating_student_services" value="3"></td>
-                                <td><input type="radio" name="rating_student_services" value="2"></td>
-                                <td><input type="radio" name="rating_student_services" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Technology support</td>
-                                <td><input type="radio" name="rating_tech_support" value="5" required></td>
-                                <td><input type="radio" name="rating_tech_support" value="4"></td>
-                                <td><input type="radio" name="rating_tech_support" value="3"></td>
-                                <td><input type="radio" name="rating_tech_support" value="2"></td>
-                                <td><input type="radio" name="rating_tech_support" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Library resources and support</td>
-                                <td><input type="radio" name="rating_library" value="5" required></td>
-                                <td><input type="radio" name="rating_library" value="4"></td>
-                                <td><input type="radio" name="rating_library" value="3"></td>
-                                <td><input type="radio" name="rating_library" value="2"></td>
-                                <td><input type="radio" name="rating_library" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>Campus facilities (if applicable)</td>
-                                <td><input type="radio" name="rating_facilities" value="5" required></td>
-                                <td><input type="radio" name="rating_facilities" value="4"></td>
-                                <td><input type="radio" name="rating_facilities" value="3"></td>
-                                <td><input type="radio" name="rating_facilities" value="2"></td>
-                                <td><input type="radio" name="rating_facilities" value="0"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="progress-container" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="7" aria-label="Survey progress: Section 1 of 7">
+                <div class="progress-bar" id="progressBar"></div>
             </div>
 
-            <!-- Section 3: Curriculum and Learning -->
-            <div class="section" data-section="3">
-                <h2 class="section-title">3. Curriculum and Learning</h2>
-                
-                <div class="question">
-                    <label class="question-label required">Rate how well the program prepared you in each competency area:</label>
-                    <table class="rating-table">
-                        <thead>
-                            <tr>
-                                <th>NASPAA Universal Required Competency</th>
-                                <th>Very Well</th>
-                                <th>Well</th>
-                                <th>Adequately</th>
-                                <th>Poorly</th>
-                                <th>Very Poorly</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Lead and manage in public governance</td>
-                                <td><input type="radio" name="comp_lead_manage" value="5" required></td>
-                                <td><input type="radio" name="comp_lead_manage" value="4"></td>
-                                <td><input type="radio" name="comp_lead_manage" value="3"></td>
-                                <td><input type="radio" name="comp_lead_manage" value="2"></td>
-                                <td><input type="radio" name="comp_lead_manage" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td>Participate in and contribute to the policy process</td>
-                                <td><input type="radio" name="comp_policy" value="5" required></td>
-                                <td><input type="radio" name="comp_policy" value="4"></td>
-                                <td><input type="radio" name="comp_policy" value="3"></td>
-                                <td><input type="radio" name="comp_policy" value="2"></td>
-                                <td><input type="radio" name="comp_policy" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td>Analyze, synthesize, think critically, solve problems and make decisions</td>
-                                <td><input type="radio" name="comp_analyze" value="5" required></td>
-                                <td><input type="radio" name="comp_analyze" value="4"></td>
-                                <td><input type="radio" name="comp_analyze" value="3"></td>
-                                <td><input type="radio" name="comp_analyze" value="2"></td>
-                                <td><input type="radio" name="comp_analyze" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td>Articulate and apply a public service perspective</td>
-                                <td><input type="radio" name="comp_public_service" value="5" required></td>
-                                <td><input type="radio" name="comp_public_service" value="4"></td>
-                                <td><input type="radio" name="comp_public_service" value="3"></td>
-                                <td><input type="radio" name="comp_public_service" value="2"></td>
-                                <td><input type="radio" name="comp_public_service" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td>Communicate and interact productively with a diverse and changing workforce and citizenry</td>
-                                <td><input type="radio" name="comp_communicate" value="5" required></td>
-                                <td><input type="radio" name="comp_communicate" value="4"></td>
-                                <td><input type="radio" name="comp_communicate" value="3"></td>
-                                <td><input type="radio" name="comp_communicate" value="2"></td>
-                                <td><input type="radio" name="comp_communicate" value="1"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="error-message" id="errorMessage" role="alert" aria-live="assertive"></div>
 
-                <div class="question">
-                    <label class="question-label">Most valuable courses/experiences (List top 3):</label>
-                    <input type="text" name="valuable_course_1" placeholder="1." style="margin-bottom: 10px;">
-                    <input type="text" name="valuable_course_2" placeholder="2." style="margin-bottom: 10px;">
-                    <input type="text" name="valuable_course_3" placeholder="3.">
-                </div>
+            <form id="surveyForm" action="https://formspree.io/f/mblzqjjl" method="POST">
+                <input type="hidden" name="form_version" value="2">
 
-                <div class="question">
-                    <label class="question-label">Least valuable courses/experiences (List any):</label>
-                    <input type="text" name="least_valuable_1" placeholder="1." style="margin-bottom: 10px;">
-                    <input type="text" name="least_valuable_2" placeholder="2.">
-                </div>
+                <!-- Section 1: Background Information -->
+                <div class="section active" data-section="1">
+                    <h2 class="section-title" tabindex="-1">1. Background Information</h2>
 
-                <div class="question">
-                    <label class="question-label">Courses you wish were offered:</label>
-                    <textarea name="courses_wished" rows="3"></textarea>
-                </div>
-
-                <div class="question">
-                    <label class="question-label">Additional skills/knowledge areas you feel the program should address:</label>
-                    <textarea name="additional_skills" rows="3"></textarea>
-                </div>
-            </div>
-
-            <!-- Section 4: Career and Employment -->
-            <div class="section" data-section="4">
-                <h2 class="section-title">4. Career and Employment Outcomes</h2>
-                
-                <div class="question">
-                    <label class="question-label required">Current Employment Status:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="public_full_time" required>
-                            Employed full-time in public sector
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="nonprofit_full_time" required>
-                            Employed full-time in nonprofit sector
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="private_full_time" required>
-                            Employed full-time in private sector
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="part_time" required>
-                            Employed part-time
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="self_employed" required>
-                            Self-employed/consultant
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="continuing_education" required>
-                            Continuing education (PhD, etc.)
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="seeking" required>
-                            Seeking employment
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="current_employment" value="other" required>
-                            Other
-                        </label>
-                    </div>
-                    <input type="text" name="current_employment_other" placeholder="Please specify" style="margin-top: 10px; display: none;">
-                </div>
-
-                <div id="employment_details" style="display: none;">
-                    <div class="question">
-                        <label class="question-label">Job Title:</label>
-                        <input type="text" name="job_title">
-                    </div>
-
-                    <div class="question">
-                        <label class="question-label">Organization:</label>
-                        <input type="text" name="organization">
-                    </div>
-
-                    <div class="question">
-                        <label class="question-label">Starting Salary Range:</label>
-                        <select name="salary_range">
-                            <option value="">Select range</option>
-                            <option value="under_40k">Under $40,000</option>
-                            <option value="40k_50k">$40,000-$50,000</option>
-                            <option value="50k_60k">$50,000-$60,000</option>
-                            <option value="60k_70k">$60,000-$70,000</option>
-                            <option value="70k_80k">$70,000-$80,000</option>
-                            <option value="80k_90k">$80,000-$90,000</option>
-                            <option value="over_90k">Over $90,000</option>
-                        </select>
-                    </div>
-
-                    <div class="question">
-                        <label class="question-label">How did you find your current position?</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="csuf_career">
-                                CSUF career services
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="faculty_referral">
-                                Faculty referral
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="alumni_network">
-                                Alumni network
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="internship">
-                                Internship connection
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="job_boards">
-                                Online job boards
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="professional_assoc">
-                                Professional associations
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="personal_network">
-                                Personal network
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="internal_promotion">
-                                Internal promotion
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="job_source" value="other">
-                                Other
-                            </label>
+                    <div class="two-column">
+                        <div class="question">
+                            <label class="question-label" for="cwid">Campus-Wide ID (CWID):</label>
+                            <input type="text" name="cwid" id="cwid" maxlength="9" inputmode="numeric">
+                            <div class="helper-text">Optional &mdash; used only to match responses with program records</div>
                         </div>
-                        <input type="text" name="job_source_other" placeholder="Please specify" style="margin-top: 10px; display: none;">
-                    </div>
 
-                    <div class="question">
-                        <label class="question-label">How well does your current position utilize your MPA education?</label>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" name="mpa_utilization" value="extensively">
-                                Extensively
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="mpa_utilization" value="moderately">
-                                Moderately
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="mpa_utilization" value="somewhat">
-                                Somewhat
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="mpa_utilization" value="very_little">
-                                Very little
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" name="mpa_utilization" value="not_at_all">
-                                Not at all
-                            </label>
+                        <div class="question">
+                            <label class="question-label required" for="graduation_date">Graduation Date (Month/Year):</label>
+                            <input type="text" name="graduation_date" id="graduation_date" placeholder="e.g., May 2025" required>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Section 5: Program Improvement -->
-            <div class="section" data-section="5">
-                <h2 class="section-title">5. Program Improvement Feedback</h2>
-                
-                <div class="question">
-                    <label class="question-label">What changes would most improve the MPA program? (Check all that apply)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="diverse_courses">
-                            More diverse course offerings
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="career_services">
-                            Better career services/job placement support
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="networking">
-                            More networking opportunities
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="online_tools">
-                            Enhanced online learning tools
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="practical_learning">
-                            More practical/applied learning experiences
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="advising">
-                            Better academic advising
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="scheduling">
-                            More flexible scheduling
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="alumni_network">
-                            Stronger alumni network
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="faculty_diversity">
-                            More diversity in faculty
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="curriculum_update">
-                            Updated curriculum to reflect current trends
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="improvement[]" value="other">
-                            Other
-                        </label>
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Program Track:</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="program_track" value="on_campus" required>
+                                    On-campus
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="program_track" value="online">
+                                    Online
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="program_track" value="hybrid">
+                                    Hybrid
+                                </label>
+                            </div>
+                        </fieldset>
                     </div>
-                    <input type="text" name="improvement_other" placeholder="Please specify" style="margin-top: 10px; display: none;">
-                </div>
 
-                <div class="question">
-                    <label class="question-label">Specific suggestions for program improvement:</label>
-                    <textarea name="specific_suggestions" rows="4"></textarea>
-                </div>
-
-                <div class="question">
-                    <label class="question-label required">Would you recommend the CSUF MPA program to others?</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="recommend" value="definitely_yes" required>
-                            Definitely yes
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="recommend" value="probably_yes" required>
-                            Probably yes
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="recommend" value="uncertain" required>
-                            Uncertain
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="recommend" value="probably_no" required>
-                            Probably no
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="recommend" value="definitely_no" required>
-                            Definitely no
-                        </label>
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Time to Complete Program:</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="2_years" required>
+                                    2 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="2.5_years">
+                                    2.5 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="3_years">
+                                    3 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="3.5_years">
+                                    3.5 years
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="time_to_complete" value="4+_years">
+                                    4+ years
+                                </label>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
 
-                <div class="question">
-                    <label class="question-label">Why or why not?</label>
-                    <textarea name="recommend_reason" rows="3"></textarea>
-                </div>
-            </div>
+                <!-- Section 2: Academic Performance -->
+                <div class="section" data-section="2">
+                    <h2 class="section-title" tabindex="-1">2. Academic Performance and Experience</h2>
 
-            <!-- Section 6: Diversity, Equity, Inclusion, and Belonging -->
-            <div class="section" data-section="6">
-                <h2 class="section-title">6. Diversity, Equity, Inclusion, and Belonging</h2>
-                
-                <div class="question">
-                    <label class="question-label required">How well did the program address diversity, equity, inclusion, and belonging:</label>
-                    <table class="rating-table">
-                        <thead>
-                            <tr>
-                                <th>Area</th>
-                                <th>Very Well</th>
-                                <th>Well</th>
-                                <th>Adequately</th>
-                                <th>Poorly</th>
-                                <th>Very Poorly</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Diversity:</strong> Exposure to different perspectives and experiences in course content and discussions</td>
-                                <td><input type="radio" name="deib_diversity" value="5" required></td>
-                                <td><input type="radio" name="deib_diversity" value="4"></td>
-                                <td><input type="radio" name="deib_diversity" value="3"></td>
-                                <td><input type="radio" name="deib_diversity" value="2"></td>
-                                <td><input type="radio" name="deib_diversity" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Equity:</strong> Fair access to opportunities, resources, and support regardless of background</td>
-                                <td><input type="radio" name="deib_equity" value="5" required></td>
-                                <td><input type="radio" name="deib_equity" value="4"></td>
-                                <td><input type="radio" name="deib_equity" value="3"></td>
-                                <td><input type="radio" name="deib_equity" value="2"></td>
-                                <td><input type="radio" name="deib_equity" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Inclusion:</strong> Active engagement with diversity and creation of supportive environment</td>
-                                <td><input type="radio" name="deib_inclusion" value="5" required></td>
-                                <td><input type="radio" name="deib_inclusion" value="4"></td>
-                                <td><input type="radio" name="deib_inclusion" value="3"></td>
-                                <td><input type="radio" name="deib_inclusion" value="2"></td>
-                                <td><input type="radio" name="deib_inclusion" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Belonging:</strong> I felt comfortable being my authentic self in the program</td>
-                                <td><input type="radio" name="deib_belonging" value="5" required></td>
-                                <td><input type="radio" name="deib_belonging" value="4"></td>
-                                <td><input type="radio" name="deib_belonging" value="3"></td>
-                                <td><input type="radio" name="deib_belonging" value="2"></td>
-                                <td><input type="radio" name="deib_belonging" value="1"></td>
-                            </tr>
-                            <tr>
-                                <td>Preparing students to work effectively with diverse populations in public service</td>
-                                <td><input type="radio" name="deib_preparation" value="5" required></td>
-                                <td><input type="radio" name="deib_preparation" value="4"></td>
-                                <td><input type="radio" name="deib_preparation" value="3"></td>
-                                <td><input type="radio" name="deib_preparation" value="2"></td>
-                                <td><input type="radio" name="deib_preparation" value="1"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">Final Overall GPA Range:</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="gpa_range" value="3.75_4.0">
+                                    3.75 - 4.0
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gpa_range" value="3.50_3.74">
+                                    3.50 - 3.74
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gpa_range" value="3.25_3.49">
+                                    3.25 - 3.49
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gpa_range" value="3.00_3.24">
+                                    3.00 - 3.24
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="gpa_range" value="below_3.00">
+                                    Below 3.00
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
 
-                <div class="question">
-                    <label class="question-label">Additional comments on diversity, equity, inclusion, and belonging in the program:</label>
-                    <textarea name="deib_comments" rows="4"></textarea>
-                </div>
-            </div>
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Culminating Experience Type:</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_type" value="thesis" required>
+                                    Thesis
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_type" value="applied_project">
+                                    Applied Project
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_type" value="comprehensive_exam">
+                                    Comprehensive Exam
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_type" value="internship_portfolio">
+                                    Internship + Portfolio
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
 
-            <!-- Section 7: Alumni Engagement -->
-            <div class="section" data-section="7">
-                <h2 class="section-title">7. Alumni Engagement</h2>
-                
-                <div class="question">
-                    <label class="question-label">Would you be interested in: (Check all that apply)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="guest_speaker">
-                            Serving as a guest speaker in classes
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="mentoring">
-                            Mentoring current students
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="alumni_events">
-                            Participating in alumni events
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="advisory_board">
-                            Serving on an alumni advisory board
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="internships">
-                            Providing internship opportunities
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="financial">
-                            Making financial contributions to the program
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="alumni_interest[]" value="none">
-                            None of the above
-                        </label>
+                    <div class="question">
+                        <label class="question-label" for="culminating_feedback">Culminating Experience Grade/Feedback:</label>
+                        <textarea name="culminating_feedback" id="culminating_feedback" rows="3"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Rate your overall satisfaction with:</legend>
+                            <table class="rating-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Aspect</th>
+                                        <th scope="col">Excellent</th>
+                                        <th scope="col">Good</th>
+                                        <th scope="col">Fair</th>
+                                        <th scope="col">Poor</th>
+                                        <th scope="col">N/A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Course content quality</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_course_content" value="5" required aria-label="Course content quality: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_course_content" value="4" aria-label="Course content quality: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_course_content" value="3" aria-label="Course content quality: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_course_content" value="2" aria-label="Course content quality: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_course_content" value="0" aria-label="Course content quality: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Faculty teaching effectiveness</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_faculty_teaching" value="5" required aria-label="Faculty teaching effectiveness: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_faculty_teaching" value="4" aria-label="Faculty teaching effectiveness: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_faculty_teaching" value="3" aria-label="Faculty teaching effectiveness: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_faculty_teaching" value="2" aria-label="Faculty teaching effectiveness: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_faculty_teaching" value="0" aria-label="Faculty teaching effectiveness: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Faculty accessibility/support</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_faculty_access" value="5" required aria-label="Faculty accessibility/support: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_faculty_access" value="4" aria-label="Faculty accessibility/support: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_faculty_access" value="3" aria-label="Faculty accessibility/support: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_faculty_access" value="2" aria-label="Faculty accessibility/support: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_faculty_access" value="0" aria-label="Faculty accessibility/support: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Academic advising quality</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_advising" value="5" required aria-label="Academic advising quality: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_advising" value="4" aria-label="Academic advising quality: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_advising" value="3" aria-label="Academic advising quality: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_advising" value="2" aria-label="Academic advising quality: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_advising" value="0" aria-label="Academic advising quality: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Program administration</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_administration" value="5" required aria-label="Program administration: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_administration" value="4" aria-label="Program administration: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_administration" value="3" aria-label="Program administration: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_administration" value="2" aria-label="Program administration: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_administration" value="0" aria-label="Program administration: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Career services/job placement support</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_career_services" value="5" required aria-label="Career services/job placement support: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_career_services" value="4" aria-label="Career services/job placement support: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_career_services" value="3" aria-label="Career services/job placement support: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_career_services" value="2" aria-label="Career services/job placement support: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_career_services" value="0" aria-label="Career services/job placement support: N/A"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Student services</th>
+                                        <td data-label="Excellent"><input type="radio" name="rating_student_services" value="5" required aria-label="Student services: Excellent"></td>
+                                        <td data-label="Good"><input type="radio" name="rating_student_services" value="4" aria-label="Student services: Good"></td>
+                                        <td data-label="Fair"><input type="radio" name="rating_student_services" value="3" aria-label="Student services: Fair"></td>
+                                        <td data-label="Poor"><input type="radio" name="rating_student_services" value="2" aria-label="Student services: Poor"></td>
+                                        <td data-label="N/A"><input type="radio" name="rating_student_services" value="0" aria-label="Student services: N/A"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
                     </div>
                 </div>
 
-                <div class="question">
-                    <label class="question-label">Preferred method of staying connected: (Check all that apply)</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="email">
-                            Email newsletter
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="social_media">
-                            Social media (LinkedIn, Facebook)
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="alumni_events">
-                            Alumni events
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="website">
-                            Program website
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="conferences">
-                            Professional conferences
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="connection_method[]" value="other">
-                            Other
-                        </label>
+                <!-- Section 3: Curriculum and Learning -->
+                <div class="section" data-section="3">
+                    <h2 class="section-title" tabindex="-1">3. Curriculum and Learning</h2>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Rate how well the program prepared you in each competency area:</legend>
+                            <table class="rating-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">NASPAA Universal Required Competency</th>
+                                        <th scope="col">Very Well</th>
+                                        <th scope="col">Well</th>
+                                        <th scope="col">Adequately</th>
+                                        <th scope="col">Poorly</th>
+                                        <th scope="col">Very Poorly</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Lead and manage in public governance</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_lead_manage" value="5" required aria-label="Lead and manage in public governance: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_lead_manage" value="4" aria-label="Lead and manage in public governance: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_lead_manage" value="3" aria-label="Lead and manage in public governance: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_lead_manage" value="2" aria-label="Lead and manage in public governance: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_lead_manage" value="1" aria-label="Lead and manage in public governance: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Participate in and contribute to the policy process</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_policy" value="5" required aria-label="Participate in and contribute to the policy process: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_policy" value="4" aria-label="Participate in and contribute to the policy process: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_policy" value="3" aria-label="Participate in and contribute to the policy process: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_policy" value="2" aria-label="Participate in and contribute to the policy process: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_policy" value="1" aria-label="Participate in and contribute to the policy process: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Analyze, synthesize, think critically, solve problems and make decisions</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_analyze" value="5" required aria-label="Analyze, synthesize, think critically, solve problems and make decisions: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_analyze" value="4" aria-label="Analyze, synthesize, think critically, solve problems and make decisions: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_analyze" value="3" aria-label="Analyze, synthesize, think critically, solve problems and make decisions: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_analyze" value="2" aria-label="Analyze, synthesize, think critically, solve problems and make decisions: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_analyze" value="1" aria-label="Analyze, synthesize, think critically, solve problems and make decisions: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Articulate and apply a public service perspective</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_public_service" value="5" required aria-label="Articulate and apply a public service perspective: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_public_service" value="4" aria-label="Articulate and apply a public service perspective: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_public_service" value="3" aria-label="Articulate and apply a public service perspective: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_public_service" value="2" aria-label="Articulate and apply a public service perspective: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_public_service" value="1" aria-label="Articulate and apply a public service perspective: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Communicate and interact productively with a diverse and changing workforce and citizenry</th>
+                                        <td data-label="Very Well"><input type="radio" name="comp_communicate" value="5" required aria-label="Communicate and interact productively with a diverse workforce: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="comp_communicate" value="4" aria-label="Communicate and interact productively with a diverse workforce: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="comp_communicate" value="3" aria-label="Communicate and interact productively with a diverse workforce: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="comp_communicate" value="2" aria-label="Communicate and interact productively with a diverse workforce: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="comp_communicate" value="1" aria-label="Communicate and interact productively with a diverse workforce: Very Poorly"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
                     </div>
-                    <input type="text" name="connection_method_other" placeholder="Please specify" style="margin-top: 10px; display: none;">
+
+                    <div class="question">
+                        <label class="question-label" for="valuable_course_1">Most valuable courses/experiences (List top 3):</label>
+                        <input type="text" name="valuable_course_1" id="valuable_course_1" placeholder="1." style="margin-bottom: 10px;">
+                        <input type="text" name="valuable_course_2" id="valuable_course_2" placeholder="2." style="margin-bottom: 10px;" aria-label="Second most valuable course">
+                        <input type="text" name="valuable_course_3" id="valuable_course_3" placeholder="3." aria-label="Third most valuable course">
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="least_valuable_1">Least valuable courses/experiences (List any):</label>
+                        <input type="text" name="least_valuable_1" id="least_valuable_1" placeholder="1." style="margin-bottom: 10px;">
+                        <input type="text" name="least_valuable_2" id="least_valuable_2" placeholder="2." aria-label="Second least valuable course">
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="courses_wished">Courses you wish were offered:</label>
+                        <textarea name="courses_wished" id="courses_wished" rows="3"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="additional_skills">Additional skills/knowledge areas you feel the program should address:</label>
+                        <textarea name="additional_skills" id="additional_skills" rows="3"></textarea>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Section 8: Additional Comments -->
-            <div class="section" data-section="8">
-                <h2 class="section-title">8. Additional Comments</h2>
-                
-                <div class="question">
-                    <label class="question-label">Any other feedback, suggestions, or comments about your experience in the CSUF MPA program:</label>
-                    <textarea name="additional_comments" rows="6"></textarea>
+                <!-- Section 4: Career and Employment -->
+                <div class="section" data-section="4">
+                    <h2 class="section-title" tabindex="-1">4. Career and Employment Outcomes</h2>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">While enrolled in the MPA program, what was your primary employment status?</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="employment_during_program" value="full_time" required>
+                                    Full-time employed
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="employment_during_program" value="part_time">
+                                    Part-time employed
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="employment_during_program" value="unemployed">
+                                    Unemployed/Student only
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="employment_during_program" value="other">
+                                    Other
+                                </label>
+                            </div>
+                            <input type="text" name="employment_during_program_other" id="employment_during_program_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other employment status during program">
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">What is your employment status now, as you complete the program?</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="public_full_time" required>
+                                    Employed full-time in public sector
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="nonprofit_full_time">
+                                    Employed full-time in nonprofit sector
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="private_full_time">
+                                    Employed full-time in private sector
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="part_time">
+                                    Employed part-time
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="self_employed">
+                                    Self-employed/consultant
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="continuing_education">
+                                    Continuing education (PhD, etc.)
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="seeking">
+                                    Seeking employment
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="current_employment" value="other">
+                                    Other
+                                </label>
+                            </div>
+                            <input type="text" name="current_employment_other" id="current_employment_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other current employment status">
+                        </fieldset>
+                    </div>
+
+                    <div id="employment_details" style="display: none;">
+                        <div class="question">
+                            <label class="question-label" for="job_title">Job Title:</label>
+                            <input type="text" name="job_title" id="job_title">
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label" for="organization">Organization:</label>
+                            <input type="text" name="organization" id="organization">
+                        </div>
+
+                        <div class="question">
+                            <label class="question-label" for="salary_range">Starting Salary Range:</label>
+                            <select name="salary_range" id="salary_range">
+                                <option value="">Select range</option>
+                                <option value="under_40k">Under $40,000</option>
+                                <option value="40k_50k">$40,000-$50,000</option>
+                                <option value="50k_60k">$50,000-$60,000</option>
+                                <option value="60k_70k">$60,000-$70,000</option>
+                                <option value="70k_80k">$70,000-$80,000</option>
+                                <option value="80k_90k">$80,000-$90,000</option>
+                                <option value="90k_100k">$90,000-$100,000</option>
+                                <option value="over_100k">Over $100,000</option>
+                            </select>
+                        </div>
+
+                        <div class="question">
+                            <fieldset>
+                                <legend class="question-label">How did you find your current position?</legend>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="csuf_career">
+                                        CSUF career services
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="faculty_referral">
+                                        Faculty referral
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="alumni_network">
+                                        Alumni network
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="internship">
+                                        Internship connection
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="job_boards">
+                                        Online job boards
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="professional_assoc">
+                                        Professional associations
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="personal_network">
+                                        Personal network
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="internal_promotion">
+                                        Internal promotion
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="job_source" value="other">
+                                        Other
+                                    </label>
+                                </div>
+                                <input type="text" name="job_source_other" id="job_source_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other job source">
+                            </fieldset>
+                        </div>
+
+                        <div class="question">
+                            <fieldset>
+                                <legend class="question-label">How well does your current position utilize your MPA education?</legend>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="mpa_utilization" value="extensively">
+                                        Extensively
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mpa_utilization" value="moderately">
+                                        Moderately
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mpa_utilization" value="somewhat">
+                                        Somewhat
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mpa_utilization" value="very_little">
+                                        Very little
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="mpa_utilization" value="not_at_all">
+                                        Not at all
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
                 </div>
 
-                <div style="background: #f0f7ff; padding: 20px; border-radius: 6px; margin-top: 30px; border-left: 4px solid #003262;">
-                    <p style="margin-bottom: 10px;"><strong>Thank you for completing this survey!</strong></p>
-                    <p style="font-size: 14px;">Your feedback is invaluable in helping us improve the program for future students.</p>
+                <!-- Section 5: Program Improvement -->
+                <div class="section" data-section="5">
+                    <h2 class="section-title" tabindex="-1">5. Program Improvement Feedback</h2>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">What changes would most improve the MPA program? (Check all that apply)</legend>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="diverse_courses">
+                                    More diverse course offerings
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="career_services">
+                                    Better career services/job placement support
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="networking">
+                                    More networking opportunities
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="online_tools">
+                                    Enhanced online learning tools
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="practical_learning">
+                                    More practical/applied learning experiences
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="advising">
+                                    Better academic advising
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="scheduling">
+                                    More flexible scheduling
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="alumni_network">
+                                    Stronger alumni network
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="faculty_diversity">
+                                    More diversity in faculty
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="curriculum_update">
+                                    Updated curriculum to reflect current trends
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="improvement[]" value="other">
+                                    Other
+                                </label>
+                            </div>
+                            <input type="text" name="improvement_other" id="improvement_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other improvement">
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="specific_suggestions">Specific suggestions for program improvement:</label>
+                        <textarea name="specific_suggestions" id="specific_suggestions" rows="4"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">Would you recommend the CSUF MPA program to others?</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="definitely_yes" required>
+                                    Definitely yes
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="probably_yes">
+                                    Probably yes
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="uncertain">
+                                    Uncertain
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="probably_no">
+                                    Probably no
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="recommend" value="definitely_no">
+                                    Definitely no
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="recommend_reason">Why or why not?</label>
+                        <textarea name="recommend_reason" id="recommend_reason" rows="3"></textarea>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Navigation Buttons -->
-            <div class="button-group">
-                <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Previous</button>
-                <button type="button" class="btn-primary" id="nextBtn">Next</button>
-                <button type="button" class="btn-success" id="submitBtn" style="display: none;">Submit Survey</button>
-            </div>
-        </form>
+                <!-- Section 6: Diversity, Equity, Inclusion, and Belonging -->
+                <div class="section" data-section="6">
+                    <h2 class="section-title" tabindex="-1">6. Diversity, Equity, Inclusion, and Belonging</h2>
 
-        <!-- Completion Message -->
-        <div class="completion-message" id="completionMessage">
-            <h2>✓ Survey Submitted Successfully!</h2>
-            <p>Thank you for taking the time to provide your feedback.</p>
-            <p>Your responses have been submitted and will help us improve the MPA program.</p>
-            <button type="button" class="btn-success" id="downloadBtn">Download Your Responses (CSV Backup)</button>
-        </div>
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label required">How well did the program address diversity, equity, inclusion, and belonging:</legend>
+                            <table class="rating-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Area</th>
+                                        <th scope="col">Very Well</th>
+                                        <th scope="col">Well</th>
+                                        <th scope="col">Adequately</th>
+                                        <th scope="col">Poorly</th>
+                                        <th scope="col">Very Poorly</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><strong>Diversity</strong> <span class="optional-tag">(optional)</span>: Exposure to different perspectives and experiences in course content and discussions</th>
+                                        <td data-label="Very Well"><input type="radio" name="deib_diversity" value="5" aria-label="Diversity: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="deib_diversity" value="4" aria-label="Diversity: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="deib_diversity" value="3" aria-label="Diversity: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="deib_diversity" value="2" aria-label="Diversity: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="deib_diversity" value="1" aria-label="Diversity: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><strong>Equity</strong> <span class="optional-tag">(optional)</span>: Fair access to opportunities, resources, and support regardless of background</th>
+                                        <td data-label="Very Well"><input type="radio" name="deib_equity" value="5" aria-label="Equity: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="deib_equity" value="4" aria-label="Equity: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="deib_equity" value="3" aria-label="Equity: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="deib_equity" value="2" aria-label="Equity: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="deib_equity" value="1" aria-label="Equity: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><strong>Inclusion</strong> <span class="optional-tag">(optional)</span>: Active engagement with diversity and creation of supportive environment</th>
+                                        <td data-label="Very Well"><input type="radio" name="deib_inclusion" value="5" aria-label="Inclusion: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="deib_inclusion" value="4" aria-label="Inclusion: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="deib_inclusion" value="3" aria-label="Inclusion: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="deib_inclusion" value="2" aria-label="Inclusion: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="deib_inclusion" value="1" aria-label="Inclusion: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><strong>Belonging:</strong> I felt comfortable being my authentic self in the program</th>
+                                        <td data-label="Very Well"><input type="radio" name="deib_belonging" value="5" required aria-label="Belonging: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="deib_belonging" value="4" aria-label="Belonging: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="deib_belonging" value="3" aria-label="Belonging: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="deib_belonging" value="2" aria-label="Belonging: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="deib_belonging" value="1" aria-label="Belonging: Very Poorly"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Preparing students to work effectively with diverse populations in public service</th>
+                                        <td data-label="Very Well"><input type="radio" name="deib_preparation" value="5" required aria-label="Preparing for diverse populations: Very Well"></td>
+                                        <td data-label="Well"><input type="radio" name="deib_preparation" value="4" aria-label="Preparing for diverse populations: Well"></td>
+                                        <td data-label="Adequately"><input type="radio" name="deib_preparation" value="3" aria-label="Preparing for diverse populations: Adequately"></td>
+                                        <td data-label="Poorly"><input type="radio" name="deib_preparation" value="2" aria-label="Preparing for diverse populations: Poorly"></td>
+                                        <td data-label="Very Poorly"><input type="radio" name="deib_preparation" value="1" aria-label="Preparing for diverse populations: Very Poorly"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="deib_comments">Additional comments on diversity, equity, inclusion, and belonging in the program:</label>
+                        <textarea name="deib_comments" id="deib_comments" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <!-- Section 7: Alumni Engagement and Final Comments -->
+                <div class="section" data-section="7">
+                    <h2 class="section-title" tabindex="-1">7. Alumni Engagement and Final Comments</h2>
+                    <button type="button" class="skip-section-link" onclick="skipSection()">Skip this section</button>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">Would you be interested in: (Check all that apply)</legend>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="guest_speaker">
+                                    Serving as a guest speaker in classes
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="mentoring">
+                                    Mentoring current students
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="alumni_events">
+                                    Participating in alumni events
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="advisory_board">
+                                    Serving on an alumni advisory board
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="internships">
+                                    Providing internship opportunities
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="financial">
+                                    Making financial contributions to the program
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="alumni_interest[]" value="none">
+                                    None of the above
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">Preferred method of staying connected: (Check all that apply)</legend>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="email">
+                                    Email newsletter
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="social_media">
+                                    Social media (LinkedIn, Facebook)
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="alumni_events">
+                                    Alumni events
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="website">
+                                    Program website
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="conferences">
+                                    Professional conferences
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="connection_method[]" value="other">
+                                    Other
+                                </label>
+                            </div>
+                            <input type="text" name="connection_method_other" id="connection_method_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other connection method">
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="additional_comments">Any other feedback, suggestions, or comments about your experience in the CSUF MPA program:</label>
+                        <textarea name="additional_comments" id="additional_comments" rows="6"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="contact_email">If you'd like someone to follow up on your feedback, provide your email here (optional):</label>
+                        <input type="email" name="contact_email" id="contact_email">
+                    </div>
+
+                    <div style="background: #f0f7ff; padding: 20px; border-radius: 6px; margin-top: 30px; border-left: 4px solid #003262;">
+                        <p style="margin-bottom: 10px;"><strong>Thank you for completing this survey!</strong></p>
+                        <p style="font-size: 14px;">Your feedback is invaluable in helping us improve the program for future students.</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <nav aria-label="Survey navigation">
+                    <div class="button-group">
+                        <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                        <button type="button" class="btn-primary" id="nextBtn">Next</button>
+                        <button type="button" class="btn-success" id="submitBtn" style="display: none;">Submit Survey</button>
+                        <button type="button" class="btn-success" id="fallbackDownloadBtn" style="display: none;">Download Your Responses (CSV Backup)</button>
+                    </div>
+                </nav>
+            </form>
+
+            <!-- Completion Message -->
+            <div class="completion-message" id="completionMessage">
+                <h2 tabindex="-1"><span aria-hidden="true">&#10003;</span> Survey Submitted Successfully!</h2>
+                <p>Thank you for taking the time to provide your feedback.</p>
+                <p>Your responses have been submitted and will help us improve the MPA program.</p>
+                <button type="button" class="btn-success" id="downloadBtn">Download Your Responses (CSV Backup)</button>
+            </div>
+        </main>
     </div>
 
     <script>
         // Survey navigation and logic
         let currentSection = 1;
-        const totalSections = 8;
+        const totalSections = document.querySelectorAll('.section').length;
         let surveyData = {};
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved progress
+            var saved = localStorage.getItem('mpa_survey_data');
+            if (saved) {
+                try {
+                    var parsed = JSON.parse(saved);
+                    var age = Date.now() - parsed.timestamp;
+                    var SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+                    if (age < SEVEN_DAYS) {
+                        showResumePrompt(parsed);
+                        return;
+                    } else {
+                        localStorage.removeItem('mpa_survey_data');
+                    }
+                } catch (e) {
+                    localStorage.removeItem('mpa_survey_data');
+                }
+            }
+            initSurvey();
+        });
+
+        function initSurvey() {
             updateProgress();
             setupEventListeners();
-        });
+        }
+
+        function showResumePrompt(parsed) {
+            var overlay = document.createElement('div');
+            overlay.className = 'resume-overlay';
+            overlay.setAttribute('role', 'dialog');
+            overlay.setAttribute('aria-modal', 'true');
+            overlay.setAttribute('aria-label', 'Resume previous session');
+            overlay.innerHTML =
+                '<div class="resume-dialog">' +
+                    '<h3>Resume Previous Session?</h3>' +
+                    '<p>You have a saved survey in progress. Would you like to pick up where you left off?</p>' +
+                    '<div class="button-group">' +
+                        '<button type="button" class="btn-primary" id="resumeBtn">Resume</button>' +
+                        '<button type="button" class="btn-secondary" id="startFreshBtn">Start Fresh</button>' +
+                    '</div>' +
+                '</div>';
+            document.body.appendChild(overlay);
+
+            var resumeBtn = document.getElementById('resumeBtn');
+            var startFreshBtn = document.getElementById('startFreshBtn');
+
+            resumeBtn.focus();
+
+            resumeBtn.addEventListener('click', function() {
+                surveyData = parsed.data || {};
+                currentSection = parsed.section || 1;
+                restoreFormData(surveyData);
+                showSection(currentSection);
+                overlay.remove();
+                initSurvey();
+            });
+
+            startFreshBtn.addEventListener('click', function() {
+                localStorage.removeItem('mpa_survey_data');
+                overlay.remove();
+                initSurvey();
+            });
+
+            // Trap focus within dialog
+            overlay.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    var focusable = overlay.querySelectorAll('button');
+                    var first = focusable[0];
+                    var last = focusable[focusable.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+                if (e.key === 'Escape') {
+                    startFreshBtn.click();
+                }
+            });
+        }
+
+        function restoreFormData(data) {
+            for (var key in data) {
+                var value = data[key];
+                if (Array.isArray(value)) {
+                    // Checkboxes
+                    value.forEach(function(v) {
+                        var cb = document.querySelector('input[name="' + key + '"][value="' + v + '"]');
+                        if (cb) cb.checked = true;
+                    });
+                } else {
+                    // Try radio first
+                    var radio = document.querySelector('input[type="radio"][name="' + key + '"][value="' + value + '"]');
+                    if (radio) {
+                        radio.checked = true;
+                        // Trigger change event for skip logic
+                        radio.dispatchEvent(new Event('change', { bubbles: true }));
+                    } else {
+                        // Text/textarea/select
+                        var field = document.querySelector('[name="' + key + '"]');
+                        if (field && (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName === 'SELECT')) {
+                            field.value = value;
+                        }
+                    }
+                }
+            }
+        }
 
         function setupEventListeners() {
             // Next button
@@ -1105,15 +1412,18 @@
                 }
             });
 
-            // Download button
+            // Download buttons
             document.getElementById('downloadBtn').addEventListener('click', function() {
                 downloadCSV();
             });
+            document.getElementById('fallbackDownloadBtn').addEventListener('click', function() {
+                downloadCSV();
+            });
 
-            // Skip logic for employment status (during program)
-            document.querySelectorAll('input[name="employment_status"]').forEach(function(radio) {
+            // Skip logic for employment during program
+            document.querySelectorAll('input[name="employment_during_program"]').forEach(function(radio) {
                 radio.addEventListener('change', function() {
-                    const otherInput = document.querySelector('input[name="employment_status_other"]');
+                    var otherInput = document.querySelector('input[name="employment_during_program_other"]');
                     if (this.value === 'other') {
                         otherInput.style.display = 'block';
                         otherInput.required = true;
@@ -1128,9 +1438,9 @@
             // Skip logic for current employment
             document.querySelectorAll('input[name="current_employment"]').forEach(function(radio) {
                 radio.addEventListener('change', function() {
-                    const employmentDetails = document.getElementById('employment_details');
-                    const otherInput = document.querySelector('input[name="current_employment_other"]');
-                    
+                    var employmentDetails = document.getElementById('employment_details');
+                    var otherInput = document.querySelector('input[name="current_employment_other"]');
+
                     if (this.value === 'other') {
                         otherInput.style.display = 'block';
                         otherInput.required = true;
@@ -1145,12 +1455,11 @@
                         employmentDetails.style.display = 'block';
                     } else {
                         employmentDetails.style.display = 'none';
-                        // Clear employment detail fields
                         document.querySelector('input[name="job_title"]').value = '';
                         document.querySelector('input[name="organization"]').value = '';
                         document.querySelector('select[name="salary_range"]').value = '';
-                        document.querySelectorAll('input[name="job_source"]').forEach(r => r.checked = false);
-                        document.querySelectorAll('input[name="mpa_utilization"]').forEach(r => r.checked = false);
+                        document.querySelectorAll('input[name="job_source"]').forEach(function(r) { r.checked = false; });
+                        document.querySelectorAll('input[name="mpa_utilization"]').forEach(function(r) { r.checked = false; });
                     }
                 });
             });
@@ -1158,7 +1467,7 @@
             // Skip logic for job source other
             document.querySelectorAll('input[name="job_source"]').forEach(function(radio) {
                 radio.addEventListener('change', function() {
-                    const otherInput = document.querySelector('input[name="job_source_other"]');
+                    var otherInput = document.querySelector('input[name="job_source_other"]');
                     if (this.value === 'other') {
                         otherInput.style.display = 'block';
                     } else {
@@ -1171,10 +1480,10 @@
             // Skip logic for improvement other
             document.querySelectorAll('input[name="improvement[]"]').forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
-                    const otherInput = document.querySelector('input[name="improvement_other"]');
-                    const otherCheckbox = Array.from(document.querySelectorAll('input[name="improvement[]"]'))
-                        .find(cb => cb.value === 'other');
-                    
+                    var otherInput = document.querySelector('input[name="improvement_other"]');
+                    var otherCheckbox = Array.from(document.querySelectorAll('input[name="improvement[]"]'))
+                        .find(function(cb) { return cb.value === 'other'; });
+
                     if (otherCheckbox && otherCheckbox.checked) {
                         otherInput.style.display = 'block';
                     } else {
@@ -1187,10 +1496,10 @@
             // Skip logic for connection method other
             document.querySelectorAll('input[name="connection_method[]"]').forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
-                    const otherInput = document.querySelector('input[name="connection_method_other"]');
-                    const otherCheckbox = Array.from(document.querySelectorAll('input[name="connection_method[]"]'))
-                        .find(cb => cb.value === 'other');
-                    
+                    var otherInput = document.querySelector('input[name="connection_method_other"]');
+                    var otherCheckbox = Array.from(document.querySelectorAll('input[name="connection_method[]"]'))
+                        .find(function(cb) { return cb.value === 'other'; });
+
                     if (otherCheckbox && otherCheckbox.checked) {
                         otherInput.style.display = 'block';
                     } else {
@@ -1201,14 +1510,30 @@
             });
         }
 
+        function skipSection() {
+            if (currentSection < totalSections) {
+                saveCurrentSection();
+                currentSection++;
+                showSection(currentSection);
+                updateProgress();
+            }
+        }
+
         function showSection(sectionNum) {
             document.querySelectorAll('.section').forEach(function(section) {
                 section.classList.remove('active');
             });
-            
-            const targetSection = document.querySelector(`.section[data-section="${sectionNum}"]`);
+
+            var targetSection = document.querySelector('.section[data-section="' + sectionNum + '"]');
             if (targetSection) {
                 targetSection.classList.add('active');
+
+                // Move focus to section heading for accessibility
+                var heading = targetSection.querySelector('.section-title');
+                if (heading) {
+                    heading.focus();
+                    document.title = heading.textContent + ' - CSUF MPA Exit Survey';
+                }
             }
 
             // Update button visibility
@@ -1217,20 +1542,27 @@
             document.getElementById('submitBtn').style.display = sectionNum === totalSections ? 'block' : 'none';
 
             // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: motionOk ? 'smooth' : 'auto' });
         }
 
         function updateProgress() {
-            const progress = (currentSection / totalSections) * 100;
+            // Inflated progress: start at 15%, end at 100%
+            var progress = 15 + (currentSection / totalSections) * 85;
             document.getElementById('progressBar').style.width = progress + '%';
+
+            // Update ARIA with honest values
+            var container = document.querySelector('.progress-container');
+            container.setAttribute('aria-valuenow', currentSection);
+            container.setAttribute('aria-label', 'Survey progress: Section ' + currentSection + ' of ' + totalSections);
         }
 
         function validateCurrentSection() {
-            const currentSectionElement = document.querySelector(`.section[data-section="${currentSection}"]`);
-            const requiredFields = currentSectionElement.querySelectorAll('[required]');
-            
-            let isValid = true;
-            let firstInvalidField = null;
+            var currentSectionElement = document.querySelector('.section[data-section="' + currentSection + '"]');
+            var requiredFields = currentSectionElement.querySelectorAll('[required]');
+
+            var isValid = true;
+            var firstInvalidField = null;
 
             requiredFields.forEach(function(field) {
                 // Skip validation for hidden fields
@@ -1240,31 +1572,42 @@
 
                 // Check radio buttons
                 if (field.type === 'radio') {
-                    const radioGroup = currentSectionElement.querySelectorAll(`[name="${field.name}"]`);
-                    const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+                    var radioGroup = currentSectionElement.querySelectorAll('[name="' + field.name + '"]');
+                    var isChecked = Array.from(radioGroup).some(function(radio) { return radio.checked; });
                     if (!isChecked) {
                         isValid = false;
+                        // Mark the fieldset as invalid
+                        var fieldset = field.closest('fieldset');
+                        if (fieldset) fieldset.setAttribute('aria-invalid', 'true');
                         if (!firstInvalidField) {
                             firstInvalidField = field;
                         }
+                    } else {
+                        var fieldset = field.closest('fieldset');
+                        if (fieldset) fieldset.removeAttribute('aria-invalid');
                     }
                 }
                 // Check other fields
                 else if (!field.value.trim()) {
                     isValid = false;
                     field.style.borderColor = '#d32f2f';
+                    field.style.borderWidth = '2px';
+                    field.setAttribute('aria-invalid', 'true');
                     if (!firstInvalidField) {
                         firstInvalidField = field;
                     }
                 } else {
                     field.style.borderColor = '#ddd';
+                    field.style.borderWidth = '1px';
+                    field.removeAttribute('aria-invalid');
                 }
             });
 
             if (!isValid) {
                 showError('Please complete all required fields before proceeding.');
                 if (firstInvalidField) {
-                    firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    firstInvalidField.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'center' });
                 }
             } else {
                 hideError();
@@ -1274,9 +1617,18 @@
         }
 
         function saveCurrentSection() {
-            const currentSectionElement = document.querySelector(`.section[data-section="${currentSection}"]`);
-            const inputs = currentSectionElement.querySelectorAll('input, select, textarea');
-            
+            var currentSectionElement = document.querySelector('.section[data-section="' + currentSection + '"]');
+            var inputs = currentSectionElement.querySelectorAll('input, select, textarea');
+
+            // Reset checkbox arrays for this section to prevent accumulation bug
+            var checkboxNames = new Set();
+            currentSectionElement.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
+                checkboxNames.add(cb.name);
+            });
+            checkboxNames.forEach(function(name) {
+                delete surveyData[name];
+            });
+
             inputs.forEach(function(input) {
                 if (input.type === 'radio') {
                     if (input.checked) {
@@ -1293,16 +1645,33 @@
                     surveyData[input.name] = input.value;
                 }
             });
+
+            // Save to localStorage
+            try {
+                localStorage.setItem('mpa_survey_data', JSON.stringify({
+                    data: surveyData,
+                    section: currentSection,
+                    timestamp: Date.now()
+                }));
+            } catch (e) {
+                // localStorage may be unavailable; continue without saving
+            }
         }
 
         function submitSurvey() {
             // Add timestamp
             surveyData['submission_date'] = new Date().toISOString();
-            
+            surveyData['form_version'] = '2';
+
+            // Map contact_email to Formspree's _replyto field
+            if (surveyData['contact_email']) {
+                surveyData['_replyto'] = surveyData['contact_email'];
+            }
+
             // Prepare data for Formspree
-            const formData = new FormData();
-            for (let key in surveyData) {
-                let value = surveyData[key];
+            var formData = new FormData();
+            for (var key in surveyData) {
+                var value = surveyData[key];
                 if (Array.isArray(value)) {
                     value = value.join('; ');
                 }
@@ -1310,7 +1679,7 @@
             }
 
             // Disable submit button to prevent double submission
-            const submitBtn = document.getElementById('submitBtn');
+            var submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Submitting...';
 
@@ -1322,37 +1691,42 @@
                     'Accept': 'application/json'
                 }
             })
-            .then(response => {
+            .then(function(response) {
                 if (response.ok) {
+                    // Clear saved progress
+                    localStorage.removeItem('mpa_survey_data');
+
                     // Success - hide form, show completion message
                     document.getElementById('surveyForm').style.display = 'none';
                     document.querySelector('.progress-container').style.display = 'none';
-                    document.getElementById('completionMessage').classList.add('active');
+                    var completionMsg = document.getElementById('completionMessage');
+                    completionMsg.classList.add('active');
+
+                    // Move focus to completion heading
+                    var completionHeading = completionMsg.querySelector('h2');
+                    completionHeading.focus();
                 } else {
-                    // Error handling
-                    response.json().then(data => {
+                    response.json().then(function() {
                         showError('There was a problem submitting your survey. Please download your responses and email them to the program director.');
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'Submit Survey';
-                        // Still allow CSV download
-                        document.getElementById('downloadBtn').style.display = 'block';
+                        document.getElementById('fallbackDownloadBtn').style.display = 'block';
                     });
                 }
             })
-            .catch(error => {
+            .catch(function() {
                 showError('Network error. Please check your connection and try again, or download your responses and email them.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Survey';
-                // Still allow CSV download as backup
-                document.getElementById('downloadBtn').style.display = 'block';
+                document.getElementById('fallbackDownloadBtn').style.display = 'block';
             });
         }
 
         function downloadCSV() {
-            const csv = convertToCSV(surveyData);
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
+            var csv = convertToCSV(surveyData);
+            var blob = new Blob([csv], { type: 'text/csv' });
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
             a.setAttribute('hidden', '');
             a.setAttribute('href', url);
             a.setAttribute('download', 'mpa_exit_survey_' + new Date().getTime() + '.csv');
@@ -1362,33 +1736,30 @@
         }
 
         function convertToCSV(data) {
-            let csv = 'Field,Value\n';
-            
-            for (let key in data) {
-                let value = data[key];
+            var csv = 'Field,Value\n';
+
+            for (var key in data) {
+                var value = data[key];
                 if (Array.isArray(value)) {
                     value = value.join('; ');
                 }
-                // Escape quotes and wrap in quotes if contains comma
                 value = String(value).replace(/"/g, '""');
-                if (value.includes(',') || value.includes('\n')) {
-                    value = `"${value}"`;
-                }
-                csv += `"${key}","${value}"\n`;
+                csv += '"' + key + '","' + value + '"\n';
             }
-            
+
             return csv;
         }
 
         function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
+            var errorDiv = document.getElementById('errorMessage');
             errorDiv.textContent = message;
             errorDiv.classList.add('active');
-            errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            errorDiv.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'nearest' });
         }
 
         function hideError() {
-            const errorDiv = document.getElementById('errorMessage');
+            var errorDiv = document.getElementById('errorMessage');
             errorDiv.classList.remove('active');
         }
     </script>
