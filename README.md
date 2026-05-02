@@ -30,7 +30,7 @@ This exit survey is designed to gather feedback from graduating MPA students to 
   - Post-graduation plans confirmed
 
 ### Access the Survey
-🔗 **[Click here to access the MPA Exit Survey](https://[YOUR-GITHUB-USERNAME].github.io/[REPO-NAME]/mpa_exit_survey.html)**
+🔗 **[Click here to access the MPA Exit Survey](https://csuf-mpa.github.io/mpa-exit-survey/)/mpa_exit_survey.html)**
 
 > *Note: Replace the URL above with your actual GitHub Pages link after deployment*
 
