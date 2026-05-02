@@ -667,7 +667,6 @@
 
                     // Success - hide form, intro, and progress bar; show completion message
                     hideElement(document.getElementById('surveyForm'));
-                    hideElement(document.querySelector('.intro-text'));
                     hideElement(document.querySelector('.progress-container'));
                     var completionMsg = document.getElementById('completionMessage');
                     completionMsg.classList.add('active');
