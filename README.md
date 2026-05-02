@@ -129,7 +129,6 @@ This survey is designed to meet WCAG 2.1 Level AA conformance, the technical sta
 
 ### Data Collection
 - Responses automatically submitted to Formspree
-- Access dashboard at: https://formspree.io/forms/mblzqjjl
 - Export to CSV for analysis
 - Optional: Integrate with Google Sheets for real-time updates
 
@@ -145,10 +144,6 @@ To modify the survey:
 ### Local Checks
 - Run `npm run check:js` to validate JavaScript syntax
 - Run `npm run serve`, then `npm run check:a11y` in another terminal to run a pa11y accessibility scan
-
-### Documentation
-- **[Deployment Instructions](DEPLOYMENT_README.md)** - How to set up and deploy
-- **[Quick Start Guide](QUICK_START.md)** - Getting started checklist
 
 ---
 
@@ -167,7 +162,7 @@ We prepare leaders to address complex social issues, uphold democratic values, a
 **Program Director**: David P. Adams, Ph.D  
 **Email**: dpadams@fullerton.edu  
 **Phone**: 657-278-4770  
-**Website**: [Add your program website]
+**Website**: [mpa.fullerton.edu](https://mpa.fullerton.edu)
 
 ---
 
@@ -215,7 +210,7 @@ This survey tool is maintained by the CSUF MPA Program. For questions about usin
 
 ---
 
-**Last Updated**: March 2026
+**Last Updated**: May 2026
 
 **Survey Version**: 2.2.1
 
