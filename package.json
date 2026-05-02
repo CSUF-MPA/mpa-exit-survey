@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "check:js": "node --check survey.js",
+    "check:a11y": "npx --yes pa11y http://localhost:8080"
+  }
+}

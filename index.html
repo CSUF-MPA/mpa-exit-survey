@@ -21,7 +21,7 @@
                 <p>Fields marked with an asterisk (<span class="required-example" aria-hidden="true">*</span>) are required.</p>
             </div>
 
-            <div class="progress-container" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="7" aria-label="Survey progress: Section 1 of 7">
+            <div class="progress-container" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="8" aria-label="Survey progress: Section 1 of 8">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
 
@@ -89,7 +89,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label">Final Overall GPA Range:</legend>
+                            <legend class="question-label">Final Overall GPA Range (self-reported estimate):</legend>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="gpa_range" value="3.75_4.0">
@@ -347,6 +347,34 @@
                         <label class="question-label" for="additional_skills">Additional skills/knowledge areas you feel the program should address:</label>
                         <textarea name="additional_skills" id="additional_skills" rows="3"></textarea>
                     </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">How well did the program prepare you to use data, technology, or AI tools responsibly in public service?</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="tech_ai_preparation" value="very_well">
+                                    Very well
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tech_ai_preparation" value="well">
+                                    Well
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tech_ai_preparation" value="adequately">
+                                    Adequately
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tech_ai_preparation" value="poorly">
+                                    Poorly
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="tech_ai_preparation" value="not_addressed">
+                                    Not addressed
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <!-- Section 4: Career and Employment -->
@@ -584,6 +612,39 @@
 
                     <div class="question">
                         <fieldset>
+                            <legend class="question-label">Which course formats or schedules would best support students like you? (Check all that apply)</legend>
+                            <div class="checkbox-group">
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="schedule_preference[]" value="evening">
+                                    Evening classes
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="schedule_preference[]" value="online">
+                                    Online classes
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="schedule_preference[]" value="hybrid">
+                                    Hybrid classes
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="schedule_preference[]" value="in_person">
+                                    In-person classes
+                                </label>
+                                <label class="checkbox-option">
+                                    <input type="checkbox" name="schedule_preference[]" value="weekend">
+                                    Weekend intensives
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="single_most_helpful_change">What is one change that would have most improved your experience in the program?</label>
+                        <textarea name="single_most_helpful_change" id="single_most_helpful_change" rows="3"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
                             <legend class="question-label required">Would you recommend the CSUF MPA program to others?<span class="sr-only"> Required.</span></legend>
                             <div class="radio-group">
                                 <label class="radio-option">
@@ -632,6 +693,7 @@
                                         <th scope="col">Adequately</th>
                                         <th scope="col">Poorly</th>
                                         <th scope="col">Very Poorly</th>
+                                        <th scope="col">Prefer not to answer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -642,6 +704,7 @@
                                         <td data-label="Adequately"><input type="radio" name="deib_diversity" value="3" aria-label="Diversity: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="deib_diversity" value="2" aria-label="Diversity: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="deib_diversity" value="1" aria-label="Diversity: Very Poorly"></td>
+                                        <td data-label="Prefer not to answer"><input type="radio" name="deib_diversity" value="prefer_not_to_answer" aria-label="Diversity: Prefer not to answer"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><strong>Equity</strong> <span class="optional-tag">(optional)</span>: Fair access to opportunities, resources, and support regardless of background</th>
@@ -650,6 +713,7 @@
                                         <td data-label="Adequately"><input type="radio" name="deib_equity" value="3" aria-label="Equity: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="deib_equity" value="2" aria-label="Equity: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="deib_equity" value="1" aria-label="Equity: Very Poorly"></td>
+                                        <td data-label="Prefer not to answer"><input type="radio" name="deib_equity" value="prefer_not_to_answer" aria-label="Equity: Prefer not to answer"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><strong>Inclusion</strong> <span class="optional-tag">(optional)</span>: Active engagement with diversity and creation of supportive environment</th>
@@ -658,6 +722,7 @@
                                         <td data-label="Adequately"><input type="radio" name="deib_inclusion" value="3" aria-label="Inclusion: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="deib_inclusion" value="2" aria-label="Inclusion: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="deib_inclusion" value="1" aria-label="Inclusion: Very Poorly"></td>
+                                        <td data-label="Prefer not to answer"><input type="radio" name="deib_inclusion" value="prefer_not_to_answer" aria-label="Inclusion: Prefer not to answer"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row"><strong>Belonging:</strong> I felt comfortable being my authentic self in the program</th>
@@ -666,6 +731,7 @@
                                         <td data-label="Adequately"><input type="radio" name="deib_belonging" value="3" aria-label="Belonging: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="deib_belonging" value="2" aria-label="Belonging: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="deib_belonging" value="1" aria-label="Belonging: Very Poorly"></td>
+                                        <td data-label="Prefer not to answer"><input type="radio" name="deib_belonging" value="prefer_not_to_answer" aria-label="Belonging: Prefer not to answer"></td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Preparing students to work effectively with diverse populations in public service</th>
@@ -674,6 +740,7 @@
                                         <td data-label="Adequately"><input type="radio" name="deib_preparation" value="3" aria-label="Preparing for diverse populations: Adequately"></td>
                                         <td data-label="Poorly"><input type="radio" name="deib_preparation" value="2" aria-label="Preparing for diverse populations: Poorly"></td>
                                         <td data-label="Very Poorly"><input type="radio" name="deib_preparation" value="1" aria-label="Preparing for diverse populations: Very Poorly"></td>
+                                        <td data-label="Prefer not to answer"><input type="radio" name="deib_preparation" value="prefer_not_to_answer" aria-label="Preparing for diverse populations: Prefer not to answer"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -767,7 +834,13 @@
 
                     <div class="question">
                         <label class="question-label" for="contact_email">If you'd like someone to follow up on your feedback, provide your email here (optional):</label>
-                        <input type="email" name="contact_email" id="contact_email" autocomplete="email">
+                        <input type="email" name="contact_email" id="contact_email">
+                    </div>
+
+                    <div class="privacy-notice">
+                        <h3>Privacy and Data Use</h3>
+                        <p>Your responses are used for program assessment, accreditation reporting, and continuous improvement. Individual responses are reviewed only by program leadership.</p>
+                        <p>CWID and follow-up email are optional. If you provide an email, it will be used only to follow up on your feedback and will not be included in aggregate reporting.</p>
                     </div>
 
                     <div class="callout">
@@ -776,12 +849,24 @@
                     </div>
                 </div>
 
+                <!-- Section 8: Review and Submit -->
+                <div class="section" data-section="8">
+                    <h2 class="section-title" tabindex="-1">8. Review and Submit</h2>
+
+                    <div class="intro-text">
+                        <p><strong>Please review your responses before submitting.</strong> Use the Previous button to make changes.</p>
+                        <p>When you submit, your responses will be sent to the MPA program for assessment and improvement purposes.</p>
+                    </div>
+
+                    <div class="review-panel" id="reviewContent" aria-live="polite"></div>
+                </div>
+
                 <!-- Navigation Buttons -->
                 <nav aria-label="Survey navigation">
                     <div class="button-group">
                         <button type="button" class="btn-secondary" id="prevBtn" hidden>Previous</button>
                         <button type="button" class="btn-primary" id="nextBtn">Next</button>
-                        <button type="button" class="btn-success" id="submitBtn" hidden>Submit Survey</button>
+                        <button type="submit" class="btn-success" id="submitBtn" hidden>Submit Survey</button>
                         <button type="button" class="btn-success" id="fallbackDownloadBtn" hidden>Download Your Responses (CSV Backup)</button>
                     </div>
                 </nav>
@@ -797,523 +882,6 @@
         </main>
     </div>
 
-    <script>
-        // Survey navigation and logic
-        let currentSection = 1;
-        const totalSections = document.querySelectorAll('.section').length;
-        let surveyData = {};
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check for saved progress
-            var saved = localStorage.getItem('mpa_survey_data');
-            if (saved) {
-                try {
-                    var parsed = JSON.parse(saved);
-                    var age = Date.now() - parsed.timestamp;
-                    var SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
-                    if (age < SEVEN_DAYS) {
-                        showResumePrompt(parsed);
-                        return;
-                    } else {
-                        localStorage.removeItem('mpa_survey_data');
-                    }
-                } catch (e) {
-                    localStorage.removeItem('mpa_survey_data');
-                }
-            }
-            initSurvey();
-        });
-
-        function initSurvey() {
-            updateProgress();
-            setupEventListeners();
-        }
-
-        function showElement(element) {
-            if (!element) return;
-            element.hidden = false;
-            element.classList.remove('is-hidden');
-        }
-
-        function hideElement(element) {
-            if (!element) return;
-            element.hidden = true;
-            element.classList.add('is-hidden');
-        }
-
-        function showResumePrompt(parsed) {
-            var overlay = document.createElement('div');
-            overlay.className = 'resume-overlay';
-            overlay.setAttribute('role', 'dialog');
-            overlay.setAttribute('aria-modal', 'true');
-            overlay.setAttribute('aria-labelledby', 'resumeDialogTitle');
-            overlay.innerHTML =
-                '<div class="resume-dialog">' +
-                    '<h3 id="resumeDialogTitle">Resume Previous Session?</h3>' +
-                    '<p>You have a saved survey in progress. Would you like to pick up where you left off?</p>' +
-                    '<div class="button-group">' +
-                        '<button type="button" class="btn-primary" id="resumeBtn">Resume</button>' +
-                        '<button type="button" class="btn-secondary" id="startFreshBtn">Start Fresh</button>' +
-                    '</div>' +
-                '</div>';
-            document.body.appendChild(overlay);
-
-            var resumeBtn = document.getElementById('resumeBtn');
-            var startFreshBtn = document.getElementById('startFreshBtn');
-
-            resumeBtn.focus();
-
-            resumeBtn.addEventListener('click', function() {
-                surveyData = parsed.data || {};
-                currentSection = Math.min(Math.max(parsed.section || 1, 1), totalSections);
-                initSurvey();
-                restoreFormData(surveyData);
-                showSection(currentSection);
-                overlay.remove();
-            });
-
-            startFreshBtn.addEventListener('click', function() {
-                localStorage.removeItem('mpa_survey_data');
-                overlay.remove();
-                initSurvey();
-            });
-
-            // Trap focus within dialog
-            overlay.addEventListener('keydown', function(e) {
-                if (e.key === 'Tab') {
-                    var focusable = overlay.querySelectorAll('button');
-                    var first = focusable[0];
-                    var last = focusable[focusable.length - 1];
-                    if (e.shiftKey && document.activeElement === first) {
-                        e.preventDefault();
-                        last.focus();
-                    } else if (!e.shiftKey && document.activeElement === last) {
-                        e.preventDefault();
-                        first.focus();
-                    }
-                }
-                if (e.key === 'Escape') {
-                    startFreshBtn.click();
-                }
-            });
-        }
-
-        function restoreFormData(data) {
-            for (var key in data) {
-                var value = data[key];
-                if (Array.isArray(value)) {
-                    // Checkboxes
-                    value.forEach(function(v) {
-                        var cb = document.querySelector('input[name="' + key + '"][value="' + v + '"]');
-                        if (cb) cb.checked = true;
-                    });
-                } else {
-                    // Try radio first
-                    var radio = document.querySelector('input[type="radio"][name="' + key + '"][value="' + value + '"]');
-                    if (radio) {
-                        radio.checked = true;
-                        // Trigger change event for skip logic
-                        radio.dispatchEvent(new Event('change', { bubbles: true }));
-                    } else {
-                        // Text/textarea/select
-                        var field = document.querySelector('[name="' + key + '"]');
-                        if (field && (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName === 'SELECT')) {
-                            field.value = value;
-                        }
-                    }
-                }
-            }
-        }
-
-        function setupEventListeners() {
-            // Next button
-            document.getElementById('nextBtn').addEventListener('click', function() {
-                if (validateCurrentSection()) {
-                    saveCurrentSection();
-                    if (currentSection < totalSections) {
-                        currentSection++;
-                        showSection(currentSection);
-                        updateProgress();
-                    }
-                }
-            });
-
-            // Previous button
-            document.getElementById('prevBtn').addEventListener('click', function() {
-                if (currentSection > 1) {
-                    saveCurrentSection();
-                    currentSection--;
-                    showSection(currentSection);
-                    updateProgress();
-                }
-            });
-
-            // Submit button
-            document.getElementById('submitBtn').addEventListener('click', function() {
-                if (validateCurrentSection()) {
-                    saveCurrentSection();
-                    submitSurvey();
-                }
-            });
-
-            // Download buttons
-            document.getElementById('downloadBtn').addEventListener('click', function() {
-                downloadCSV();
-            });
-            document.getElementById('fallbackDownloadBtn').addEventListener('click', function() {
-                downloadCSV();
-            });
-
-            document.getElementById('skipSectionBtn').addEventListener('click', function() {
-                skipSection();
-            });
-
-            // Skip logic for employment during program
-            document.querySelectorAll('input[name="employment_during_program"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
-                    var otherInput = document.querySelector('input[name="employment_during_program_other"]');
-                    if (this.value === 'other') {
-                        showElement(otherInput);
-                        otherInput.required = true;
-                    } else {
-                        hideElement(otherInput);
-                        otherInput.required = false;
-                        otherInput.value = '';
-                    }
-                });
-            });
-
-            // Skip logic for current employment
-            document.querySelectorAll('input[name="current_employment"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
-                    var employmentDetails = document.getElementById('employment_details');
-                    var otherInput = document.querySelector('input[name="current_employment_other"]');
-
-                    if (this.value === 'other') {
-                        showElement(otherInput);
-                        otherInput.required = true;
-                    } else {
-                        hideElement(otherInput);
-                        otherInput.required = false;
-                        otherInput.value = '';
-                    }
-
-                    // Show employment details if employed
-                    if (['public_full_time', 'nonprofit_full_time', 'private_full_time', 'part_time', 'self_employed'].includes(this.value)) {
-                        showElement(employmentDetails);
-                    } else {
-                        hideElement(employmentDetails);
-                        document.querySelector('input[name="job_title"]').value = '';
-                        document.querySelector('input[name="organization"]').value = '';
-                        document.querySelector('select[name="salary_range"]').value = '';
-                        document.querySelectorAll('input[name="job_source"]').forEach(function(r) { r.checked = false; });
-                        document.querySelectorAll('input[name="mpa_utilization"]').forEach(function(r) { r.checked = false; });
-                    }
-                });
-            });
-
-            // Skip logic for job source other
-            document.querySelectorAll('input[name="job_source"]').forEach(function(radio) {
-                radio.addEventListener('change', function() {
-                    var otherInput = document.querySelector('input[name="job_source_other"]');
-                    if (this.value === 'other') {
-                        showElement(otherInput);
-                    } else {
-                        hideElement(otherInput);
-                        otherInput.value = '';
-                    }
-                });
-            });
-
-            // Skip logic for improvement other
-            document.querySelectorAll('input[name="improvement[]"]').forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    var otherInput = document.querySelector('input[name="improvement_other"]');
-                    var otherCheckbox = Array.from(document.querySelectorAll('input[name="improvement[]"]'))
-                        .find(function(cb) { return cb.value === 'other'; });
-
-                    if (otherCheckbox && otherCheckbox.checked) {
-                        showElement(otherInput);
-                    } else {
-                        hideElement(otherInput);
-                        otherInput.value = '';
-                    }
-                });
-            });
-
-            // Skip logic for connection method other
-            document.querySelectorAll('input[name="connection_method[]"]').forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    var otherInput = document.querySelector('input[name="connection_method_other"]');
-                    var otherCheckbox = Array.from(document.querySelectorAll('input[name="connection_method[]"]'))
-                        .find(function(cb) { return cb.value === 'other'; });
-
-                    if (otherCheckbox && otherCheckbox.checked) {
-                        showElement(otherInput);
-                    } else {
-                        hideElement(otherInput);
-                        otherInput.value = '';
-                    }
-                });
-            });
-        }
-
-        function skipSection() {
-            if (currentSection < totalSections) {
-                saveCurrentSection();
-                currentSection++;
-                showSection(currentSection);
-                updateProgress();
-            }
-        }
-
-        function showSection(sectionNum) {
-            document.querySelectorAll('.section').forEach(function(section) {
-                section.classList.remove('active');
-            });
-
-            var targetSection = document.querySelector('.section[data-section="' + sectionNum + '"]');
-            if (targetSection) {
-                targetSection.classList.add('active');
-
-                // Move focus to section heading for accessibility
-                var heading = targetSection.querySelector('.section-title');
-                if (heading) {
-                    heading.focus();
-                    document.title = heading.textContent + ' - CSUF MPA Exit Survey';
-                }
-            }
-
-            // Update button visibility
-            document.getElementById('prevBtn').hidden = sectionNum <= 1;
-            document.getElementById('nextBtn').hidden = sectionNum >= totalSections;
-            document.getElementById('submitBtn').hidden = sectionNum !== totalSections;
-
-            // Scroll to top
-            var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            window.scrollTo({ top: 0, behavior: motionOk ? 'smooth' : 'auto' });
-        }
-
-        function updateProgress() {
-            var progress = (currentSection / totalSections) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-
-            // Update ARIA with honest values
-            var container = document.querySelector('.progress-container');
-            container.setAttribute('aria-valuenow', currentSection);
-            container.setAttribute('aria-label', 'Survey progress: Section ' + currentSection + ' of ' + totalSections);
-        }
-
-        function validateCurrentSection() {
-            var currentSectionElement = document.querySelector('.section[data-section="' + currentSection + '"]');
-            var fields = currentSectionElement.querySelectorAll('input, select, textarea');
-
-            var isValid = true;
-            var firstInvalidField = null;
-            var checkedRadioGroups = new Set();
-
-            fields.forEach(function(field) {
-                // Skip validation for hidden fields
-                if (field.closest('[hidden]') || field.offsetParent === null) {
-                    return;
-                }
-
-                // Check radio buttons
-                if (field.type === 'radio') {
-                    if (!field.required || checkedRadioGroups.has(field.name)) {
-                        return;
-                    }
-                    checkedRadioGroups.add(field.name);
-
-                    var radioGroup = currentSectionElement.querySelectorAll('[name="' + field.name + '"]');
-                    var isChecked = Array.from(radioGroup).some(function(radio) { return radio.checked; });
-                    var fieldset = field.closest('fieldset');
-                    if (!isChecked) {
-                        isValid = false;
-                        if (fieldset) fieldset.setAttribute('aria-invalid', 'true');
-                        if (!firstInvalidField) {
-                            firstInvalidField = field;
-                        }
-                    } else {
-                        if (fieldset) fieldset.removeAttribute('aria-invalid');
-                    }
-                }
-                // Check required text fields and type-specific constraints like email.
-                else if (!field.checkValidity()) {
-                    isValid = false;
-                    field.classList.add('is-invalid');
-                    field.setAttribute('aria-invalid', 'true');
-                    if (!firstInvalidField) {
-                        firstInvalidField = field;
-                    }
-                } else {
-                    field.classList.remove('is-invalid');
-                    field.removeAttribute('aria-invalid');
-                }
-            });
-
-            if (!isValid) {
-                showError('Please complete all required fields and correct any invalid entries before proceeding.');
-                if (firstInvalidField) {
-                    var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                    firstInvalidField.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'center' });
-                    firstInvalidField.focus({ preventScroll: true });
-                }
-            } else {
-                hideError();
-            }
-
-            return isValid;
-        }
-
-        function saveCurrentSection() {
-            var currentSectionElement = document.querySelector('.section[data-section="' + currentSection + '"]');
-            var inputs = currentSectionElement.querySelectorAll('input, select, textarea');
-
-            // Reset checkbox arrays for this section to prevent accumulation bug
-            var checkboxNames = new Set();
-            currentSectionElement.querySelectorAll('input[type="checkbox"]').forEach(function(cb) {
-                checkboxNames.add(cb.name);
-            });
-            checkboxNames.forEach(function(name) {
-                delete surveyData[name];
-            });
-
-            inputs.forEach(function(input) {
-                if (input.type === 'radio') {
-                    if (input.checked) {
-                        surveyData[input.name] = input.value;
-                    }
-                } else if (input.type === 'checkbox') {
-                    if (!surveyData[input.name]) {
-                        surveyData[input.name] = [];
-                    }
-                    if (input.checked) {
-                        surveyData[input.name].push(input.value);
-                    }
-                } else {
-                    surveyData[input.name] = input.value;
-                }
-            });
-
-            // Save to localStorage
-            try {
-                localStorage.setItem('mpa_survey_data', JSON.stringify({
-                    data: surveyData,
-                    section: currentSection,
-                    timestamp: Date.now()
-                }));
-            } catch (e) {
-                // localStorage may be unavailable; continue without saving
-            }
-        }
-
-        function submitSurvey() {
-            // Add timestamp
-            surveyData['submission_date'] = new Date().toISOString();
-            surveyData['form_version'] = '2';
-
-            // Map contact_email to Formspree's _replyto field
-            if (surveyData['contact_email']) {
-                surveyData['_replyto'] = surveyData['contact_email'];
-            }
-
-            // Prepare data for Formspree
-            var formData = new FormData();
-            for (var key in surveyData) {
-                var value = surveyData[key];
-                if (Array.isArray(value)) {
-                    value = value.join('; ');
-                }
-                formData.append(key, value);
-            }
-
-            // Disable submit button to prevent double submission
-            var submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-
-            // Submit to Formspree
-            fetch('https://formspree.io/f/mblzqjjl', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    // Clear saved progress
-                    localStorage.removeItem('mpa_survey_data');
-
-                    // Success - hide form, intro, and progress bar; show completion message
-                    hideElement(document.getElementById('surveyForm'));
-                    hideElement(document.querySelector('.intro-text'));
-                    hideElement(document.querySelector('.progress-container'));
-                    var completionMsg = document.getElementById('completionMessage');
-                    completionMsg.classList.add('active');
-
-                    // Move focus to completion heading
-                    var completionHeading = completionMsg.querySelector('h2');
-                    completionHeading.focus();
-                } else {
-                    response.json().then(function() {
-                        showError('There was a problem submitting your survey. Please download your responses and email them to the program director.');
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = 'Submit Survey';
-                        showElement(document.getElementById('fallbackDownloadBtn'));
-                    });
-                }
-            })
-            .catch(function() {
-                showError('Network error. Please check your connection and try again, or download your responses and email them.');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit Survey';
-                showElement(document.getElementById('fallbackDownloadBtn'));
-            });
-        }
-
-        function downloadCSV() {
-            var csv = convertToCSV(surveyData);
-            var blob = new Blob([csv], { type: 'text/csv' });
-            var url = window.URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.setAttribute('hidden', '');
-            a.setAttribute('href', url);
-            a.setAttribute('download', 'mpa_exit_survey_' + new Date().getTime() + '.csv');
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-
-        function convertToCSV(data) {
-            var csv = 'Field,Value\n';
-
-            for (var key in data) {
-                var value = data[key];
-                if (Array.isArray(value)) {
-                    value = value.join('; ');
-                }
-                value = String(value).replace(/"/g, '""');
-                csv += '"' + key + '","' + value + '"\n';
-            }
-
-            return csv;
-        }
-
-        function showError(message) {
-            var errorDiv = document.getElementById('errorMessage');
-            errorDiv.textContent = message;
-            errorDiv.classList.add('active');
-            var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            errorDiv.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'nearest' });
-        }
-
-        function hideError() {
-            var errorDiv = document.getElementById('errorMessage');
-            errorDiv.classList.remove('active');
-        }
-    </script>
+    <script src="survey.js"></script>
 </body>
 </html>

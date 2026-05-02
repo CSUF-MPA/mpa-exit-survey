@@ -35,7 +35,7 @@ This exit survey is designed to gather feedback from graduating MPA students to 
 > *Note: Replace the URL above with your actual GitHub Pages link after deployment*
 
 ### What to Expect
-The survey includes **7 sections**:
+The survey includes **8 sections**:
 1. **Background Information** - Your program details
 2. **Academic Performance** - GPA range, culminating experience, satisfaction ratings
 3. **Curriculum and Learning** - NASPAA competencies, valuable courses
@@ -43,16 +43,19 @@ The survey includes **7 sections**:
 5. **Program Improvement** - Suggestions for enhancement
 6. **Diversity, Equity, Inclusion, and Belonging** - DEI+B experiences
 7. **Alumni Engagement and Final Comments** - Future involvement and open feedback
+8. **Review and Submit** - Confirm responses before final submission
 
 ### Features
 - **Progress bar** - See how far you've progressed
 - **Save and resume** - Your progress is saved automatically; come back anytime within 7 days
 - **Mobile-friendly** - Complete on any device with responsive rating tables
+- **Review before submit** - Check responses before sending the survey
 - **Automatic submission** - Responses sent securely when you submit
 - **Accessible** - WCAG 2.1 AA compliant with full keyboard and screen reader support
 
 ### Privacy
-- Name and email are not collected; an optional CWID can be provided for record matching
+- Name is not collected; optional CWID can be provided for record matching
+- Optional follow-up email is used only if program staff need to respond to your feedback
 - Data is aggregated for reporting to NASPAA and program assessment
 - Individual responses are reviewed only by program leadership
 
@@ -87,6 +90,7 @@ This survey is designed to meet WCAG 2.1 Level AA conformance, the technical sta
 - All form fields have programmatic label associations (`for`/`id` and `fieldset`/`legend`)
 - Rating table radio buttons include `aria-label` attributes with full row and column context
 - Error messages use `role="alert"` with `aria-live="assertive"` for screen reader announcements
+- Required-field errors are also placed next to the specific field or question
 - Progress bar includes `role="progressbar"` with accurate `aria-valuenow` and `aria-label`
 - The resume dialog implements the WAI-ARIA dialog pattern with focus trapping
 
@@ -133,9 +137,14 @@ This survey is designed to meet WCAG 2.1 Level AA conformance, the technical sta
 To modify the survey:
 1. Edit `index.html`
 2. Edit `styles.css` for visual design and layout changes
-3. Update questions or sections in `index.html` as needed
-4. Commit changes to repository
-5. Changes automatically deploy to GitHub Pages
+3. Edit `survey.js` for navigation, validation, save/resume, review, and submission behavior
+4. Update questions or sections in `index.html` as needed
+5. Commit changes to repository
+6. Changes automatically deploy to GitHub Pages
+
+### Local Checks
+- Run `npm run check:js` to validate JavaScript syntax
+- Run `npm run serve`, then `npm run check:a11y` in another terminal to run a pa11y accessibility scan
 
 ### Documentation
 - **[Deployment Instructions](DEPLOYMENT_README.md)** - How to set up and deploy
