@@ -37,10 +37,10 @@ This exit survey is designed to gather feedback from graduating MPA students to 
 ### What to Expect
 The survey includes **8 sections**:
 1. **Background Information** - Your program details
-2. **Academic Performance** - GPA range, culminating experience, satisfaction ratings
+2. **Academic Performance** - GPA range, comprehensive exam result, culminating experience feedback, satisfaction ratings
 3. **Curriculum and Learning** - NASPAA competencies, valuable courses
 4. **Career and Employment** - Status during and after program, job details
-5. **Program Improvement** - Suggestions for enhancement
+5. **Program Improvement** - Suggestions for enhancement, schedule preferences, and culminating experience preferences
 6. **Diversity, Equity, Inclusion, and Belonging** - DEI+B experiences
 7. **Alumni Engagement and Final Comments** - Future involvement and open feedback
 8. **Review and Submit** - Confirm responses before final submission

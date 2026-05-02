@@ -116,7 +116,32 @@
                     </div>
 
                     <div class="question">
-                        <label class="question-label" for="culminating_feedback">Culminating Experience Grade/Feedback:</label>
+                        <fieldset>
+                            <legend class="question-label">Comprehensive Exam Result:</legend>
+                            <p class="helper-text">This refers to the comprehensive exam associated with the Capstone course, POSC 521.</p>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="comp_exam_result" value="passed">
+                                    Passed
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="comp_exam_result" value="failed">
+                                    Failed
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="comp_exam_result" value="not_yet_taken">
+                                    Not yet taken / result pending
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="comp_exam_result" value="prefer_not_to_answer">
+                                    Prefer not to answer
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="question">
+                        <label class="question-label" for="culminating_feedback">Feedback on the culminating experience: Capstone course (POSC 521) and Comprehensive Exam</label>
                         <textarea name="culminating_feedback" id="culminating_feedback" rows="3"></textarea>
                     </div>
 
@@ -608,6 +633,39 @@
                     <div class="question">
                         <label class="question-label" for="specific_suggestions">Specific suggestions for program improvement:</label>
                         <textarea name="specific_suggestions" id="specific_suggestions" rows="4"></textarea>
+                    </div>
+
+                    <div class="question">
+                        <fieldset>
+                            <legend class="question-label">If the program offered a different culminating experience instead of the current Capstone course (POSC 521) culminating in a Comprehensive Exam, which would you prefer?</legend>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="keep_current">
+                                    Keep as is: Capstone course with Comprehensive Exam
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="project_based">
+                                    Real-world project-based culminating experience
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="case_study">
+                                    Case study
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="thesis">
+                                    Thesis
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="portfolio">
+                                    Portfolio
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="culminating_experience_preference" value="other">
+                                    Other
+                                </label>
+                            </div>
+                            <input type="text" name="culminating_experience_preference_other" id="culminating_experience_preference_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other culminating experience preference" hidden>
+                        </fieldset>
                     </div>
 
                     <div class="question">

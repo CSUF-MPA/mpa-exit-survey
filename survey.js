@@ -314,6 +314,19 @@
                 });
             });
 
+            // Skip logic for culminating experience preference other
+            document.querySelectorAll('input[name="culminating_experience_preference"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    var otherInput = document.querySelector('input[name="culminating_experience_preference_other"]');
+                    if (this.value === 'other') {
+                        showElement(otherInput);
+                    } else {
+                        hideElement(otherInput);
+                        otherInput.value = '';
+                    }
+                });
+            });
+
             // Skip logic for connection method other
             document.querySelectorAll('input[name="connection_method[]"]').forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
