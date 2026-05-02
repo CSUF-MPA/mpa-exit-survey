@@ -4,501 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSUF MPA Program Exit Survey</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #003262;
-        }
-
-        .header h1 {
-            color: #003262;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .progress-container {
-            width: 100%;
-            background: #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            height: 8px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #003262 0%, #0066cc 100%);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .section {
-            margin-bottom: 40px;
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-size: 24px;
-            color: #003262;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .section-title:focus:not(:focus-visible) {
-            outline: none;
-        }
-
-        .question {
-            margin-bottom: 25px;
-        }
-
-        .question-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .required::after {
-            content: " *";
-            color: #d32f2f;
-        }
-
-        fieldset {
-            border: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        legend.question-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="number"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            font-family: inherit;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        input[type="number"]:focus,
-        select:focus,
-        textarea:focus {
-            border-color: #003262;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(0, 50, 98, 0.25);
-        }
-
-        :focus-visible {
-            outline: 2px solid #003262;
-            outline-offset: 2px;
-        }
-
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .radio-group,
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .radio-option,
-        .checkbox-option {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .radio-option:hover,
-        .checkbox-option:hover {
-            background: #f9f9f9;
-        }
-
-        .radio-option input[type="radio"],
-        .checkbox-option input[type="checkbox"] {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .rating-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 14px;
-        }
-
-        .rating-table th,
-        .rating-table td {
-            padding: 12px 8px;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-        }
-
-        .rating-table th {
-            background: #f5f5f5;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .rating-table th[scope="row"],
-        .rating-table td:first-child {
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .rating-table tbody tr:nth-child(odd) {
-            background: #fafafa;
-        }
-
-        .rating-table input[type="radio"] {
-            cursor: pointer;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: #003262;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #002147;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-secondary:hover {
-            background: #d0d0d0;
-        }
-
-        .btn-success {
-            background: #4caf50;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #45a049;
-        }
-
-        button:disabled {
-            background: #7a8a9a;
-            color: #fff;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .completion-message {
-            text-align: center;
-            padding: 40px;
-            display: none;
-        }
-
-        .completion-message.active {
-            display: block;
-        }
-
-        .completion-message h2 {
-            color: #4caf50;
-            margin-bottom: 20px;
-            font-size: 32px;
-        }
-
-        .completion-message p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .error-message {
-            background: #ffebee;
-            color: #c62828;
-            padding: 10px 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: none;
-        }
-
-        .error-message.active {
-            display: block;
-        }
-
-        .skip-section-link {
-            display: block;
-            text-align: right;
-            color: #767676;
-            font-size: 13px;
-            text-decoration: underline;
-            margin-bottom: 15px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-family: inherit;
-            padding: 0;
-        }
-
-        .skip-section-link:hover {
-            color: #666;
-        }
-
-        .resume-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-
-        .resume-dialog {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 420px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-
-        .resume-dialog h3 {
-            color: #003262;
-            margin-bottom: 10px;
-        }
-
-        .resume-dialog p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .resume-dialog .button-group {
-            justify-content: center;
-            border-top: none;
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        .helper-text {
-            color: #666;
-            font-size: 12px;
-            margin-top: 4px;
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #003262;
-            color: white;
-            padding: 8px 16px;
-            z-index: 100;
-            text-decoration: none;
-            border-radius: 0 0 4px 0;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        .optional-tag {
-            color: #767676;
-            font-weight: 400;
-            font-size: 13px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-
-            .rating-table thead {
-                display: none;
-            }
-
-            .rating-table,
-            .rating-table tbody,
-            .rating-table tr,
-            .rating-table td,
-            .rating-table th[scope="row"] {
-                display: block;
-                width: 100%;
-            }
-
-            .rating-table tr {
-                border: 1px solid #e0e0e0;
-                border-radius: 6px;
-                padding: 12px;
-                margin-bottom: 12px;
-                background: white !important;
-            }
-
-            .rating-table th[scope="row"],
-            .rating-table td:first-child {
-                font-weight: 600;
-                font-size: 15px;
-                margin-bottom: 10px;
-                border: none;
-                padding: 0;
-                text-align: left;
-            }
-
-            .rating-table td:not(:first-child) {
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                border: none;
-                padding: 6px 10px;
-                min-height: 36px;
-            }
-
-            .rating-table td:not(:first-child)::before {
-                content: attr(data-label);
-                font-size: 14px;
-                font-weight: 400;
-            }
-
-            .rating-table input[type="radio"] {
-                min-width: 24px;
-                min-height: 24px;
-            }
-
-            .rating-table {
-                font-size: 14px;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            button {
-                width: 100%;
-            }
-
-            .two-column {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .intro-text {
-            background: #f0f7ff;
-            padding: 20px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-            border-left: 4px solid #003262;
-        }
-
-        .intro-text p {
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .section.active {
-                animation: none;
-            }
-            .progress-bar {
-                transition: none;
-            }
-            .btn-primary:hover {
-                transform: none;
-            }
-            input, select, textarea {
-                transition: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <a href="#surveyForm" class="skip-link">Skip to survey</a>
@@ -512,7 +18,7 @@
             <div class="intro-text">
                 <p><strong>Before submitting this survey:</strong> Please have your most recent GPA estimate before you begin. Final grades are not required.</p>
                 <p>This survey takes about 10 minutes. Thanks for your patience as we work to improve the program for future students.</p>
-                <p>Fields marked with an asterisk (<span style="color: #d32f2f;">*</span>) are required</p>
+                <p>Fields marked with an asterisk (<span class="required-example" aria-hidden="true">*</span>) are required.</p>
             </div>
 
             <div class="progress-container" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="7" aria-label="Survey progress: Section 1 of 7">
@@ -535,14 +41,14 @@
                         </div>
 
                         <div class="question">
-                            <label class="question-label required" for="graduation_date">Graduation Date (Month/Year):</label>
+                            <label class="question-label required" for="graduation_date">Graduation Date (Month/Year):<span class="sr-only"> Required.</span></label>
                             <input type="text" name="graduation_date" id="graduation_date" placeholder="e.g., May 2026" required>
                         </div>
                     </div>
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">Time to Complete Program:</legend>
+                            <legend class="question-label required">Time to Complete Program:<span class="sr-only"> Required.</span></legend>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="time_to_complete" value="2_years" required>
@@ -616,7 +122,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">Rate your overall satisfaction with:</legend>
+                            <legend class="question-label required">Rate your overall satisfaction with:<span class="sr-only"> Required.</span></legend>
                             <table class="rating-table">
                                 <thead>
                                     <tr>
@@ -697,7 +203,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">Rate how well the program prepared you in each competency area:</legend>
+                            <legend class="question-label required">Rate how well the program prepared you in each competency area:<span class="sr-only"> Required.</span></legend>
                             <table class="rating-table">
                                 <thead>
                                     <tr>
@@ -817,15 +323,19 @@
 
                     <div class="question">
                         <label class="question-label" for="valuable_course_1">Most valuable courses/experiences (List top 3):</label>
-                        <input type="text" name="valuable_course_1" id="valuable_course_1" placeholder="1." style="margin-bottom: 10px;">
-                        <input type="text" name="valuable_course_2" id="valuable_course_2" placeholder="2." style="margin-bottom: 10px;" aria-label="Second most valuable course">
-                        <input type="text" name="valuable_course_3" id="valuable_course_3" placeholder="3." aria-label="Third most valuable course">
+                        <div class="stacked-inputs">
+                            <input type="text" name="valuable_course_1" id="valuable_course_1" placeholder="1.">
+                            <input type="text" name="valuable_course_2" id="valuable_course_2" placeholder="2." aria-label="Second most valuable course">
+                            <input type="text" name="valuable_course_3" id="valuable_course_3" placeholder="3." aria-label="Third most valuable course">
+                        </div>
                     </div>
 
                     <div class="question">
                         <label class="question-label" for="least_valuable_1">Least valuable courses/experiences (List any):</label>
-                        <input type="text" name="least_valuable_1" id="least_valuable_1" placeholder="1." style="margin-bottom: 10px;">
-                        <input type="text" name="least_valuable_2" id="least_valuable_2" placeholder="2." aria-label="Second least valuable course">
+                        <div class="stacked-inputs">
+                            <input type="text" name="least_valuable_1" id="least_valuable_1" placeholder="1.">
+                            <input type="text" name="least_valuable_2" id="least_valuable_2" placeholder="2." aria-label="Second least valuable course">
+                        </div>
                     </div>
 
                     <div class="question">
@@ -845,7 +355,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">While enrolled in the MPA program, what was your primary employment status?</legend>
+                            <legend class="question-label required">While enrolled in the MPA program, what was your primary employment status?<span class="sr-only"> Required.</span></legend>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="employment_during_program" value="full_time" required>
@@ -864,13 +374,13 @@
                                     Other
                                 </label>
                             </div>
-                            <input type="text" name="employment_during_program_other" id="employment_during_program_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other employment status during program">
+                            <input type="text" name="employment_during_program_other" id="employment_during_program_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other employment status during program" hidden>
                         </fieldset>
                     </div>
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">What is your employment status now, as you complete the program?</legend>
+                            <legend class="question-label required">What is your employment status now, as you complete the program?<span class="sr-only"> Required.</span></legend>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="current_employment" value="public_full_time" required>
@@ -905,11 +415,11 @@
                                     Other
                                 </label>
                             </div>
-                            <input type="text" name="current_employment_other" id="current_employment_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other current employment status">
+                            <input type="text" name="current_employment_other" id="current_employment_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other current employment status" hidden>
                         </fieldset>
                     </div>
 
-                    <div id="employment_details" style="display: none;">
+                    <div id="employment_details" class="is-hidden" hidden>
                         <div class="question">
                             <label class="question-label" for="job_title">Job Title:</label>
                             <input type="text" name="job_title" id="job_title">
@@ -976,7 +486,7 @@
                                         Other
                                     </label>
                                 </div>
-                                <input type="text" name="job_source_other" id="job_source_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other job source">
+                                <input type="text" name="job_source_other" id="job_source_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other job source" hidden>
                             </fieldset>
                         </div>
 
@@ -1063,7 +573,7 @@
                                     Other
                                 </label>
                             </div>
-                            <input type="text" name="improvement_other" id="improvement_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other improvement">
+                            <input type="text" name="improvement_other" id="improvement_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other improvement" hidden>
                         </fieldset>
                     </div>
 
@@ -1074,7 +584,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">Would you recommend the CSUF MPA program to others?</legend>
+                            <legend class="question-label required">Would you recommend the CSUF MPA program to others?<span class="sr-only"> Required.</span></legend>
                             <div class="radio-group">
                                 <label class="radio-option">
                                     <input type="radio" name="recommend" value="definitely_yes" required>
@@ -1112,7 +622,7 @@
 
                     <div class="question">
                         <fieldset>
-                            <legend class="question-label required">How well did the program address diversity, equity, inclusion, and belonging:</legend>
+                            <legend class="question-label required">How well did the program address diversity, equity, inclusion, and belonging:<span class="sr-only"> Required.</span></legend>
                             <table class="rating-table">
                                 <thead>
                                     <tr>
@@ -1179,7 +689,7 @@
                 <!-- Section 7: Alumni Engagement and Final Comments -->
                 <div class="section" data-section="7">
                     <h2 class="section-title" tabindex="-1">7. Alumni Engagement and Final Comments</h2>
-                    <button type="button" class="skip-section-link" onclick="skipSection()">Skip this section</button>
+                    <button type="button" class="skip-section-link" id="skipSectionBtn">Skip this section</button>
 
                     <div class="question">
                         <fieldset>
@@ -1246,7 +756,7 @@
                                     Other
                                 </label>
                             </div>
-                            <input type="text" name="connection_method_other" id="connection_method_other" placeholder="Please specify" style="margin-top: 10px; display: none;" aria-label="Specify other connection method">
+                            <input type="text" name="connection_method_other" id="connection_method_other" class="conditional-field is-hidden" placeholder="Please specify" aria-label="Specify other connection method" hidden>
                         </fieldset>
                     </div>
 
@@ -1257,22 +767,22 @@
 
                     <div class="question">
                         <label class="question-label" for="contact_email">If you'd like someone to follow up on your feedback, provide your email here (optional):</label>
-                        <input type="email" name="contact_email" id="contact_email">
+                        <input type="email" name="contact_email" id="contact_email" autocomplete="email">
                     </div>
 
-                    <div style="background: #f0f7ff; padding: 20px; border-radius: 6px; margin-top: 30px; border-left: 4px solid #003262;">
-                        <p style="margin-bottom: 10px;"><strong>Thank you for completing this survey!</strong></p>
-                        <p style="font-size: 14px;">Your feedback is invaluable in helping us improve the program for future students.</p>
+                    <div class="callout">
+                        <p><strong>Thank you for completing this survey!</strong></p>
+                        <p>Your feedback is invaluable in helping us improve the program for future students.</p>
                     </div>
                 </div>
 
                 <!-- Navigation Buttons -->
                 <nav aria-label="Survey navigation">
                     <div class="button-group">
-                        <button type="button" class="btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                        <button type="button" class="btn-secondary" id="prevBtn" hidden>Previous</button>
                         <button type="button" class="btn-primary" id="nextBtn">Next</button>
-                        <button type="button" class="btn-success" id="submitBtn" style="display: none;">Submit Survey</button>
-                        <button type="button" class="btn-success" id="fallbackDownloadBtn" style="display: none;">Download Your Responses (CSV Backup)</button>
+                        <button type="button" class="btn-success" id="submitBtn" hidden>Submit Survey</button>
+                        <button type="button" class="btn-success" id="fallbackDownloadBtn" hidden>Download Your Responses (CSV Backup)</button>
                     </div>
                 </nav>
             </form>
@@ -1320,15 +830,27 @@
             setupEventListeners();
         }
 
+        function showElement(element) {
+            if (!element) return;
+            element.hidden = false;
+            element.classList.remove('is-hidden');
+        }
+
+        function hideElement(element) {
+            if (!element) return;
+            element.hidden = true;
+            element.classList.add('is-hidden');
+        }
+
         function showResumePrompt(parsed) {
             var overlay = document.createElement('div');
             overlay.className = 'resume-overlay';
             overlay.setAttribute('role', 'dialog');
             overlay.setAttribute('aria-modal', 'true');
-            overlay.setAttribute('aria-label', 'Resume previous session');
+            overlay.setAttribute('aria-labelledby', 'resumeDialogTitle');
             overlay.innerHTML =
                 '<div class="resume-dialog">' +
-                    '<h3>Resume Previous Session?</h3>' +
+                    '<h3 id="resumeDialogTitle">Resume Previous Session?</h3>' +
                     '<p>You have a saved survey in progress. Would you like to pick up where you left off?</p>' +
                     '<div class="button-group">' +
                         '<button type="button" class="btn-primary" id="resumeBtn">Resume</button>' +
@@ -1344,11 +866,11 @@
 
             resumeBtn.addEventListener('click', function() {
                 surveyData = parsed.data || {};
-                currentSection = parsed.section || 1;
+                currentSection = Math.min(Math.max(parsed.section || 1, 1), totalSections);
+                initSurvey();
                 restoreFormData(surveyData);
                 showSection(currentSection);
                 overlay.remove();
-                initSurvey();
             });
 
             startFreshBtn.addEventListener('click', function() {
@@ -1443,15 +965,19 @@
                 downloadCSV();
             });
 
+            document.getElementById('skipSectionBtn').addEventListener('click', function() {
+                skipSection();
+            });
+
             // Skip logic for employment during program
             document.querySelectorAll('input[name="employment_during_program"]').forEach(function(radio) {
                 radio.addEventListener('change', function() {
                     var otherInput = document.querySelector('input[name="employment_during_program_other"]');
                     if (this.value === 'other') {
-                        otherInput.style.display = 'block';
+                        showElement(otherInput);
                         otherInput.required = true;
                     } else {
-                        otherInput.style.display = 'none';
+                        hideElement(otherInput);
                         otherInput.required = false;
                         otherInput.value = '';
                     }
@@ -1465,19 +991,19 @@
                     var otherInput = document.querySelector('input[name="current_employment_other"]');
 
                     if (this.value === 'other') {
-                        otherInput.style.display = 'block';
+                        showElement(otherInput);
                         otherInput.required = true;
                     } else {
-                        otherInput.style.display = 'none';
+                        hideElement(otherInput);
                         otherInput.required = false;
                         otherInput.value = '';
                     }
 
                     // Show employment details if employed
                     if (['public_full_time', 'nonprofit_full_time', 'private_full_time', 'part_time', 'self_employed'].includes(this.value)) {
-                        employmentDetails.style.display = 'block';
+                        showElement(employmentDetails);
                     } else {
-                        employmentDetails.style.display = 'none';
+                        hideElement(employmentDetails);
                         document.querySelector('input[name="job_title"]').value = '';
                         document.querySelector('input[name="organization"]').value = '';
                         document.querySelector('select[name="salary_range"]').value = '';
@@ -1492,9 +1018,9 @@
                 radio.addEventListener('change', function() {
                     var otherInput = document.querySelector('input[name="job_source_other"]');
                     if (this.value === 'other') {
-                        otherInput.style.display = 'block';
+                        showElement(otherInput);
                     } else {
-                        otherInput.style.display = 'none';
+                        hideElement(otherInput);
                         otherInput.value = '';
                     }
                 });
@@ -1508,9 +1034,9 @@
                         .find(function(cb) { return cb.value === 'other'; });
 
                     if (otherCheckbox && otherCheckbox.checked) {
-                        otherInput.style.display = 'block';
+                        showElement(otherInput);
                     } else {
-                        otherInput.style.display = 'none';
+                        hideElement(otherInput);
                         otherInput.value = '';
                     }
                 });
@@ -1524,9 +1050,9 @@
                         .find(function(cb) { return cb.value === 'other'; });
 
                     if (otherCheckbox && otherCheckbox.checked) {
-                        otherInput.style.display = 'block';
+                        showElement(otherInput);
                     } else {
-                        otherInput.style.display = 'none';
+                        hideElement(otherInput);
                         otherInput.value = '';
                     }
                 });
@@ -1560,9 +1086,9 @@
             }
 
             // Update button visibility
-            document.getElementById('prevBtn').style.display = sectionNum > 1 ? 'block' : 'none';
-            document.getElementById('nextBtn').style.display = sectionNum < totalSections ? 'block' : 'none';
-            document.getElementById('submitBtn').style.display = sectionNum === totalSections ? 'block' : 'none';
+            document.getElementById('prevBtn').hidden = sectionNum <= 1;
+            document.getElementById('nextBtn').hidden = sectionNum >= totalSections;
+            document.getElementById('submitBtn').hidden = sectionNum !== totalSections;
 
             // Scroll to top
             var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1570,8 +1096,7 @@
         }
 
         function updateProgress() {
-            // Inflated progress: start at 15%, end at 100%
-            var progress = 15 + (currentSection / totalSections) * 85;
+            var progress = (currentSection / totalSections) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
 
             // Update ARIA with honest values
@@ -1582,55 +1107,58 @@
 
         function validateCurrentSection() {
             var currentSectionElement = document.querySelector('.section[data-section="' + currentSection + '"]');
-            var requiredFields = currentSectionElement.querySelectorAll('[required]');
+            var fields = currentSectionElement.querySelectorAll('input, select, textarea');
 
             var isValid = true;
             var firstInvalidField = null;
+            var checkedRadioGroups = new Set();
 
-            requiredFields.forEach(function(field) {
+            fields.forEach(function(field) {
                 // Skip validation for hidden fields
-                if (field.offsetParent === null) {
+                if (field.closest('[hidden]') || field.offsetParent === null) {
                     return;
                 }
 
                 // Check radio buttons
                 if (field.type === 'radio') {
+                    if (!field.required || checkedRadioGroups.has(field.name)) {
+                        return;
+                    }
+                    checkedRadioGroups.add(field.name);
+
                     var radioGroup = currentSectionElement.querySelectorAll('[name="' + field.name + '"]');
                     var isChecked = Array.from(radioGroup).some(function(radio) { return radio.checked; });
+                    var fieldset = field.closest('fieldset');
                     if (!isChecked) {
                         isValid = false;
-                        // Mark the fieldset as invalid
-                        var fieldset = field.closest('fieldset');
                         if (fieldset) fieldset.setAttribute('aria-invalid', 'true');
                         if (!firstInvalidField) {
                             firstInvalidField = field;
                         }
                     } else {
-                        var fieldset = field.closest('fieldset');
                         if (fieldset) fieldset.removeAttribute('aria-invalid');
                     }
                 }
-                // Check other fields
-                else if (!field.value.trim()) {
+                // Check required text fields and type-specific constraints like email.
+                else if (!field.checkValidity()) {
                     isValid = false;
-                    field.style.borderColor = '#d32f2f';
-                    field.style.borderWidth = '2px';
+                    field.classList.add('is-invalid');
                     field.setAttribute('aria-invalid', 'true');
                     if (!firstInvalidField) {
                         firstInvalidField = field;
                     }
                 } else {
-                    field.style.borderColor = '#ddd';
-                    field.style.borderWidth = '1px';
+                    field.classList.remove('is-invalid');
                     field.removeAttribute('aria-invalid');
                 }
             });
 
             if (!isValid) {
-                showError('Please complete all required fields before proceeding.');
+                showError('Please complete all required fields and correct any invalid entries before proceeding.');
                 if (firstInvalidField) {
                     var motionOk = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                     firstInvalidField.scrollIntoView({ behavior: motionOk ? 'smooth' : 'auto', block: 'center' });
+                    firstInvalidField.focus({ preventScroll: true });
                 }
             } else {
                 hideError();
@@ -1720,9 +1248,9 @@
                     localStorage.removeItem('mpa_survey_data');
 
                     // Success - hide form, intro, and progress bar; show completion message
-                    document.getElementById('surveyForm').style.display = 'none';
-                    document.querySelector('.intro-text').style.display = 'none';
-                    document.querySelector('.progress-container').style.display = 'none';
+                    hideElement(document.getElementById('surveyForm'));
+                    hideElement(document.querySelector('.intro-text'));
+                    hideElement(document.querySelector('.progress-container'));
                     var completionMsg = document.getElementById('completionMessage');
                     completionMsg.classList.add('active');
 
@@ -1734,7 +1262,7 @@
                         showError('There was a problem submitting your survey. Please download your responses and email them to the program director.');
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'Submit Survey';
-                        document.getElementById('fallbackDownloadBtn').style.display = 'block';
+                        showElement(document.getElementById('fallbackDownloadBtn'));
                     });
                 }
             })
@@ -1742,7 +1270,7 @@
                 showError('Network error. Please check your connection and try again, or download your responses and email them.');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Survey';
-                document.getElementById('fallbackDownloadBtn').style.display = 'block';
+                showElement(document.getElementById('fallbackDownloadBtn'));
             });
         }
 

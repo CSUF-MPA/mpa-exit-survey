@@ -81,7 +81,7 @@ Our Diversity, Equity, Inclusion, and Belonging assessment focuses on:
 
 ## Accessibility
 
-This survey is designed to meet WCAG 2.1 Level AA conformance. Key accessibility features include:
+This survey is designed to meet WCAG 2.1 Level AA conformance, the technical standard named in the ADA Title II web and mobile accessibility rule for state and local governments. Key accessibility features include:
 
 ### Assistive Technology Support
 - All form fields have programmatic label associations (`for`/`id` and `fieldset`/`legend`)
@@ -132,9 +132,10 @@ This survey is designed to meet WCAG 2.1 Level AA conformance. Key accessibility
 ### Customization
 To modify the survey:
 1. Edit `index.html`
-2. Update questions, sections, or styling as needed
-3. Commit changes to repository
-4. Changes automatically deploy to GitHub Pages
+2. Edit `styles.css` for visual design and layout changes
+3. Update questions or sections in `index.html` as needed
+4. Commit changes to repository
+5. Changes automatically deploy to GitHub Pages
 
 ### Documentation
 - **[Deployment Instructions](DEPLOYMENT_README.md)** - How to set up and deploy
